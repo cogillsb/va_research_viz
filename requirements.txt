@@ -1,0 +1,5 @@
+streamlit-agraph
+requests
+pandas
+biopython
+tdqm
