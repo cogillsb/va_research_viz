@@ -5,3 +5,4 @@ biopython
 tdqm
 matplotlib
 wordcloud
+scikit-learn
