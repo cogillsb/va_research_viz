@@ -117,7 +117,7 @@ def filter_pmids(ids, query_filters):
     return filtered_ids
 def build_network(term):
     #Term to be searched on
-    term = "glp-1"
+    #term = "glp-1"
 
     # Required by NCBI Entrez API
     Entrez.email = "steven.cogill@va.gov"
