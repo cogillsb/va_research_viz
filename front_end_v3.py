@@ -471,7 +471,7 @@ if st.session_state.studies is not None:
     )
     # Graph
     #st.markdown('<div class="graph-wrap">', unsafe_allow_html=True)
-    with st.container(border=True, height=400):
+    with st.container(border=True, height=800, width=800):
     #with st.container(border=True):
         clicked_node = agraph(
             nodes=st.session_state.nodes, 
