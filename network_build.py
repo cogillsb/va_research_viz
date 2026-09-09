@@ -88,7 +88,7 @@ def build_layer(pmids, lyr_bin, lyr_organism, degree):
 
         if 'Abstract' in article['MedlineCitation']['Article'].keys():
             abstract_texts = (article['MedlineCitation']['Article']['Abstract']['AbstractText'])
-            conclusion = " "
+            conclusion = " ".join(abstract_texts)
             for section in abstract_texts:
                 if "conclusion" in section.attributes.get("Label", "").lower():
                     conclusion = str(section)
