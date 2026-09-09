@@ -29,7 +29,7 @@ def fetch_authors(auth_article):
         for author in auth_article['MedlineCitation']['Article']['AuthorList']:
             for affil in author['AffiliationInfo']:
                 # Look for VA-related strings
-                if (any(sub in affil['Affiliation'] for sub in ['Veterans Affairs', 'VA ', ', VA'])):     
+                if (any(sub in affil['Affiliation'] for sub in ['Veterans Affairs'])):     
                     authors.append(f"{author['ForeName']} {author['LastName']}")
     except:
         pass
@@ -62,8 +62,9 @@ def build_layer(pmids, lyr_bin, lyr_organism, degree):
     sources = []
     targets = []
     tbl_titles = []
-    
-    
+    dates = []
+    years = []
+    abstracts = []
     #Run through the records
     for i, article  in enumerate(records):
         aid = str(article['MedlineCitation']['PMID'])
@@ -72,16 +73,38 @@ def build_layer(pmids, lyr_bin, lyr_organism, degree):
         authors = fetch_authors(article)
         lyr_authors.extend(authors)
 
+        #Add the dates of publication
+        date = article['MedlineCitation']['DateCompleted']
+        dates.append(f'{date['Year']}-{date['Month']}-{date['Day']}')
+        years.append(date['Year'])
+        
         for cite in fetch_citations(article):
             if cite not in pmids:
                 sources.append(cite)
                 targets.append(aid)      
 
         #Add it to our table
-        tbl_titles.append(article ['MedlineCitation']['Article']['ArticleTitle'])    
+        tbl_titles.append(article ['MedlineCitation']['Article']['ArticleTitle']) 
+
+        if 'Abstract' in article['MedlineCitation']['Article'].keys():
+            abstract_texts = (article['MedlineCitation']['Article']['Abstract']['AbstractText'])
+            conclusion = " "
+            for section in abstract_texts:
+                if "conclusion" in section.attributes.get("Label", "").lower():
+                    conclusion = str(section)
+                    break
+            abstracts.append(conclusion)        
+
+            
+        else:
+            abstracts.append("")
+            
 
     df_lyr_studies = pd.DataFrame({'ID': ids,
                                    'Title':tbl_titles,
+                                   'Abstract': abstracts,
+                                   'Date':dates,
+                                   'Years': years,
                                    'Bin': lyr_bin,
                                    'Organism': lyr_organism,
                                    'VA_Afil': 1,  
@@ -128,7 +151,7 @@ def build_network(term):
     clinical_filter_query = '(Clinical Trial[Publication Type])'
     human_filter_query = '(Humans[MeSH])  NOT (Clinical Trial[Publication Type])'
     animal_filter_query = '(Animals[Mesh]) NOT (Humans[Mesh])  NOT (Clinical Trial[Publication Type])'
-    va_filter_query = '((va funded[Filter]) OR (Veterans Affairs[ad]) OR (VA[ad]) OR (Department of Veterans Affairs[ad]))'
+    va_filter_query = '((va funded[Filter]) OR (Veterans Affairs[ad]) OR (Department of Veterans Affairs[ad]))'
 
     clinical_studies = fetch_pmids_on_search_term([term, clinical_filter_query, va_filter_query])
     human_studies = fetch_pmids_on_search_term([term, human_filter_query, va_filter_query])
@@ -228,7 +251,21 @@ def build_network(term):
     df_network_test.drop(columns=['ID'], inplace=True)
     df_edges = df_network_test.groupby(['Source_cluster', 'Target_cluster']).size().reset_index(name='count')
     df_nodes = df_studies.groupby(['Bin', 'Cluster']).size().reset_index(name='count')
-    print('here')
-    print(len(authors))
+
+    pmid = list(df_studies.ID.values)
+    
+    handle = Entrez.elink(dbfrom="pubmed", LinkName="pubmed_pubmed_citedin", id=pmid)
+    record = Entrez.read(handle)
+    handle.close()
+    
+    cites = []
+    for r in record:
+        if r['LinkSetDb']:
+            cites.append(len(r['LinkSetDb'][0]['Link']))
+        else:
+            cites.append(0)
+    df_studies['Strength'] = cites
+    df_studies.sort_values(by='Strength', ascending=False, inplace=True)
+    
     return df_studies, df_network, df_edges, df_nodes, authors
 

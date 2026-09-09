@@ -2,18 +2,14 @@ import streamlit as st
 from streamlit_agraph import agraph, Node, Edge, Config
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-import requests
-import pandas as pd
-from Bio import Entrez
-from pathlib import Path
-from itertools import batched
-from tqdm import tqdm
-
+import numpy as np
+from datetime import datetime
+import textwrap
 from network_build import build_network
 
 
 
-# ── Page config ──────────────────────────────────────────────────────────────
+
 st.set_page_config(
     page_title="Graph Explorer",
     page_icon="⬡",
@@ -21,7 +17,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
 /* ── Base ── */
@@ -181,8 +176,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
-# ── Helper ───────────────────────────────────────────────────────────────────
 def get_connected_nodes(clicked_id, nodes_list, edges_list):
     adj_list = {}
     for edge in edges_list:
@@ -297,7 +290,7 @@ def build_graph(df_nodes, df_edges):
 
 
     df_edges.sort_values(by='count', inplace=True)
-    for i, rw in df_edges.head(int(len(df_edges)*.1)).iterrows():
+    for i, rw in df_edges.head(int(len(df_edges)*.3)).iterrows():
         edges.append(Edge(
             source=rw['Source_cluster'],
             target=rw['Target_cluster'],
@@ -305,17 +298,11 @@ def build_graph(df_nodes, df_edges):
             width=1*rw['count'],
             color={"color": "#252d3d", "highlight": "#4a90d9", "opacity": 0.8,},
         ))
-    print('edges added')
+    
     
    
     return nodes, edges, config
     
-  
-
-    
-
-
-
 config = Config(
         directed=True,
         physics=False,
@@ -328,6 +315,7 @@ config = Config(
         width="100%",
         background="#13181f",
     )
+
 if "nodes" not in st.session_state:
     st.session_state.nodes = [
         Node(id="A", label="Node A", size=25),
@@ -347,6 +335,9 @@ if config not in st.session_state:
 if 'authors' not in st.session_state:
     st.session_state.authors = []
 
+if 'term' not in st.session_state:
+    st.session_state.term = ""
+
 # ── Layout ───────────────────────────────────────────────────────────────────
 # Main header
 st.markdown("""
@@ -356,15 +347,18 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-
-
 # Create the search input box
 search_query = st.text_input("Search", placeholder="Search for a treatment or drug.")
 submit_button = st.button(label="Submit")
+
 # Execute function when submit is clicked
 if submit_button:
     df_studies, df_network, df_edges, df_nodes, authors = build_network(search_query)
-    
+    df_studies.to_csv('test_df_studies.csv', index=False)
+    df_network.to_csv('test_df_network.csv', index=False)
+    df_edges.to_csv('test_df_edges.csv', index=False)
+    df_nodes.to_csv('test_df_nodes.csv', index=False)
+
     #df_nodes = pd.read_csv('testing_nodes.csv')
     #df_edges = pd.read_csv('testing_edges.csv')
     st.session_state.studies =  df_studies
@@ -375,68 +369,159 @@ if submit_button:
     st.session_state.edges = edges
     st.session_state.config = config
     st.session_state.authors = authors
+    st.session_state.term = search_query
+ 
 
-st.markdown(
-    "<h1 style='text-align: center; color: white;'>VA Research Graph</h1>",
-    unsafe_allow_html=True,
-)
-st.markdown(
-    """
-<span style="color:white;">**Legend:**</span> &nbsp;&nbsp;&nbsp;
-<span style='font-size: 32px; color:#1d6fa4;'>■</span> <span style="color:white;">Non-Clinical Human VA Study Clusters</span> &nbsp;&nbsp;&nbsp;
-<span style='font-size: 32px; color:#177a5e;'>■</span> <span style="color:white;">Clinical VA Study Clusters</span> &nbsp;&nbsp;&nbsp;
-<span style='font-size: 32px; color:#7a4fb5;'>■</span> <span style="color:white;">Non-Clinical Animal VA Study Clusters</span> &nbsp;&nbsp;&nbsp;
+#Only display onece an analysis is run
+if st.session_state.studies is not None:
+    
+    #Add in the graphs
+    for b in st.session_state.studies.Bin.unique():
+        df_time = st.session_state.studies[st.session_state.studies.Bin==b].head(10)
+        df_time.sort_values(by='Date', inplace=True)
+        dates = []
+        titles = []
+        for yr in df_time.Years.unique():
+            df_yr = df_time[df_time.Years == yr]
+            df_yr['Date_q'] = [datetime.strptime(d, "%Y-%m-%d") for d in df_yr.Date.values]
+            dates.append(df_yr.Date_q.quantile(.5))
+            title = []
+            for i, rw in df_yr.iterrows():
+                wrap_title = textwrap.fill(rw['Title'], width=100, break_long_words=False)
+                title.append(f"{wrap_title}\n{rw['Date_q'].strftime("%b %d, %Y")}")
+            titles.append('\n'.join(title))
+                
+        #dates = [datetime.strptime(d, "%Y-%d-%m") for d in df_time.head(10).Date.values]
+        levels = np.tile([ -1, 1], int(np.ceil(len(dates)/2)))[:len(dates)]
+        
+        plt.figure(figsize=(10, 15))
+        plt.axvline(0, color='black', linestyle='-', linewidth=1.5)
+        plt.hlines(dates, xmin=0, xmax=levels, linestyle="--")
+        plt.scatter(np.zeros(len(dates)), dates, s=50, zorder=3, color='red')
+        plt.gca().yaxis.set_visible(False)
+        plt.gca().xaxis.set_visible(False)
+        for date, label, offset in zip(dates, titles, levels):
+            # Align text depending on which side of the line it lands
+            align = "left" if offset > 0 else "right"
+            # Format date string for the label
+            #date_str = date.strftime("%b %d, %Y")
+            #full_text = f"{date_str}\n{label}" if offset > 0 else f"{label}\n{date_str}"    
+            plt.gca().text(
+                x=offset * 1.1,  
+                y=date,
+                s=label,
+                ha=align,
+                va="center",
+                fontsize=14,                
+                #fontweight="bold",
+                bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gainsboro", lw=1)
+            )
+        plt.gca().spines[["left", "top", "right", "bottom"]].set_visible(False)
+        plt.yscale('log')
+        #plt.title(f'{b.capitalize()} Landmark Articles Timeline')
+        st.markdown(
+            f"<h1 style='text-align: center; color: white;'>{b.capitalize()} Landmark VA Articles Timeline</h1>",
+            unsafe_allow_html=True,
+        )
+        st.pyplot(plt)
+        st.markdown(
+            f"<h2 style='text-align: center; color: white;'>Key Findings</h2>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <style>
+            /* Targets unordered list items */
+            .stMarkdown ul li {
+                color: white !important;
+            }
+            /* Targets the bullet marker itself in modern browsers */
+            .stMarkdown ul li::marker {
+                color: white !important;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+        fs = df_time.sort_values(by='Strength')['Abstract'].values
+        st.markdown('\n'.join([f'* {f}' for f in fs]))
 
-""",
-    unsafe_allow_html=True,
-)
-# Graph
-#st.markdown('<div class="graph-wrap">', unsafe_allow_html=True)
-with st.container(border=True, height=400):
-#with st.container(border=True):
-    clicked_node = agraph(
-        nodes=st.session_state.nodes, 
-        edges=st.session_state.edges, 
-        config=st.session_state.config
+
+
+    st.markdown(
+        "<h1 style='text-align: center; color: white;'>VA Research Graph</h1>",
+        unsafe_allow_html=True,
     )
-#st.markdown('</div>', unsafe_allow_html=True)
-st.markdown(
-    "<h1 style='text-align: center; color: white;'>Contributing VA Researchers</h1>",
-    unsafe_allow_html=True,
-)
-# Create 3 columns
-cols = st.columns(3)
+    explanation="""
+    Below is a tripartite graph of VA studies for clinical trials, human studies, and animals studies.
+    The studies have been clustered based on similarity. The connections between the cluster are citations
+    where the thickness of the line indicates the number of times either cluster cited each other. 
+    """
+    st.markdown(f'<span style="color:white">{explanation}</span>', unsafe_allow_html=True)
+    st.markdown(
+        """
+    <span style="color:white;">**Legend:**</span> &nbsp;&nbsp;&nbsp;
+    <span style='font-size: 32px; color:#1d6fa4;'>■</span> <span style="color:white;">Non-Clinical Human VA Study Clusters</span> &nbsp;&nbsp;&nbsp;
+    <span style='font-size: 32px; color:#177a5e;'>■</span> <span style="color:white;">Clinical VA Study Clusters</span> &nbsp;&nbsp;&nbsp;
+    <span style='font-size: 32px; color:#7a4fb5;'>■</span> <span style="color:white;">Non-Clinical Animal VA Study Clusters</span> &nbsp;&nbsp;&nbsp;
 
-# Distribute items across the 3 columns
+    """,
+        unsafe_allow_html=True,
+    )
+    # Graph
+    #st.markdown('<div class="graph-wrap">', unsafe_allow_html=True)
+    with st.container(border=True, height=400):
+    #with st.container(border=True):
+        clicked_node = agraph(
+            nodes=st.session_state.nodes, 
+            edges=st.session_state.edges, 
+            config=st.session_state.config
+        )
+    #st.markdown('</div>', unsafe_allow_html=True)
 
-auths = st.session_state.authors
-auths.sort()
-for index, item in enumerate(st.session_state.authors):
-  cols[index % 3].write(f'<span style="color:white">{item}</span>', unsafe_allow_html=True)
-# ── Sidebar ───────────────────────────────────────────────────────────────────
-with st.sidebar:
-    st.markdown("### Cluster Info")
-    st.markdown("---")
-    if clicked_node:
-        st.write(f"**Selected Node:** {clicked_node}")
+    st.markdown(
+        "<h1 style='text-align: center; color: white;'>Contributing VA Researchers</h1>",
+        unsafe_allow_html=True,
+    )
 
-        if st.session_state.studies is not None:
-          
-            df_titles = st.session_state.studies
-            titles = df_titles[df_titles.Cluster==str(clicked_node)].Title.values
-            wordcloud = WordCloud(
-                width=800, 
-                height=400, 
-                background_color='white'
-            ).generate(';'.join(titles))
+    explanation=f"""
+    {len(st.session_state.authors)} VA researchers have worked toward advancing {st.session_state.term}
+    """
+    st.markdown( f"<h3 style='text-align: center; color: white;'>{explanation}</h3>", unsafe_allow_html=True)
+    # Create 3 columns
+    cols = st.columns(3)
 
-            # 3. Display the generated image using Matplotlib
-            plt.figure(figsize=(10, 5))
-            plt.imshow(wordcloud, interpolation='bilinear')
-            plt.axis('off')  # Hide the pixel grid axes
-            st.pyplot(plt)
-            for i, title in enumerate(titles):
-                st.write(f'{i+1} {title}')
+    # Distribute items across the 3 columns
+
+    auths = st.session_state.authors
+    auths.sort()
+    for index, item in enumerate(st.session_state.authors):
+        cols[index % 3].write(f'<span style="color:white">{item}</span>', unsafe_allow_html=True)
+
+    # ── Sidebar ───────────────────────────────────────────────────────────────────
+    with st.sidebar:
+        st.markdown("### Cluster Info")
+        st.markdown("---")
+        if clicked_node:
+            st.write(f"**Selected Node:** {clicked_node}")
+
+            if st.session_state.studies is not None:
+            
+                df_titles = st.session_state.studies
+                titles = df_titles[df_titles.Cluster==str(clicked_node)].Title.values
+                wordcloud = WordCloud(
+                    width=800, 
+                    height=400, 
+                    background_color='white'
+                ).generate(';'.join(titles))
+
+            
+                plt.figure(figsize=(10, 5))
+                plt.imshow(wordcloud, interpolation='bilinear')
+                plt.axis('off')  # Hide the pixel grid axes
+                st.pyplot(plt)
+                for i, title in enumerate(titles):
+                    st.write(f'{i+1} {title}')
 
 
     
