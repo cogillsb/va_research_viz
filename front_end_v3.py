@@ -377,7 +377,7 @@ if st.session_state.studies is not None:
     
     #Add in the graphs
     for b in st.session_state.studies.Bin.unique():
-        df_first_studies = st.session_state.studies[(st.session_state.studies.Bin==b) and (st.session_state.studies.Degree==1)]
+        df_first_studies = st.session_state.studies[(st.session_state.studies.Bin==b) & (st.session_state.studies.Degree==1)]
         df_time = df_first_studies.head(10)
         df_time.sort_values(by='Date', inplace=True)
         dates = []
