@@ -1,12 +1,61 @@
 import requests
 import pandas as pd
+import re
 from Bio import Entrez
 from pathlib import Path
 from itertools import batched
+from collections import Counter
 from tqdm import tqdm
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import cosine_similarity
 import math
+
+
+SUPER_CLUSTER_DESCRIPTIONS = {
+    "Identification of the Active GLP-1(7-37) Fragment":
+        "GLP-1(7-37) active fragment identification structure sequence receptor binding "
+        "proglucagon processing cleavage biologically active peptide",
+    "Gila Monster Venom and Exendin-4":
+        "Gila monster venom exendin-4 exenatide Heloderma suspectum venom peptide",
+    "Fatty Acid Acylation for Extended Half-Life":
+        "fatty acid acylation lipidation albumin binding extended half-life liraglutide "
+        "semaglutide pegylation long acting",
+    "Clinical Expansion to Obesity Management":
+        "clinical trial obesity overweight weight loss obesity management patient treatment "
+        "body weight metabolic disease",
+    "Multi-Receptor Co-Agonists":
+        "multi-receptor co-agonist dual agonist triagonist GLP-1 GIP glucagon receptor "
+        "multi agonism",
+}
+
+
+def cluster_label(titles):
+    """Return the two most frequent non-stopwords from cluster titles."""
+    words = re.findall(
+        r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*", " ".join(map(str, titles)).lower()
+    )
+    frequent_words = Counter(
+        word for word in words if word not in ENGLISH_STOP_WORDS
+    ).most_common(2)
+    return " ".join(word for word, _ in frequent_words) or "misc"
+
+
+def assign_super_clusters(df_studies):
+    """Assign each generated cluster to the closest requested topic."""
+    cluster_titles = (
+        df_studies.groupby("Cluster", sort=False)["Title"]
+        .agg(lambda titles: " ".join(str(title) for title in titles))
+    )
+    categories = list(SUPER_CLUSTER_DESCRIPTIONS)
+    corpus = list(cluster_titles) + list(SUPER_CLUSTER_DESCRIPTIONS.values())
+    vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 2))
+    vectors = vectorizer.fit_transform(corpus)
+    cluster_vectors = vectors[:len(cluster_titles)]
+    category_vectors = vectors[len(cluster_titles):]
+    closest_categories = cosine_similarity(cluster_vectors, category_vectors).argmax(axis=1)
+    cluster_to_super_cluster = dict(zip(cluster_titles.index, [categories[i] for i in closest_categories]))
+    return df_studies["Cluster"].map(cluster_to_super_cluster)
 
 def fetch_pmids_on_search_term(quer_comps):
     # Format query"        
@@ -223,6 +272,7 @@ def build_network(term):
     #Cluster
     cluster_labels = []
     base_ids = []
+    used_labels = set()
     for b in df_studies.Bin.unique():    
         studs = df_studies[df_studies.Bin==b]
         
@@ -233,13 +283,30 @@ def build_network(term):
         #Fit a model
         model = KMeans(n_clusters=clusters, init='k-means++', max_iter=200, n_init=10, random_state=42)
         model.fit(X)
-        labels = [f"{b} cluster {x}" for x in model.labels_]
+        labels = []
+        label_by_cluster = {
+            cluster_number: cluster_label(
+                studs.loc[model.labels_ == cluster_number, "Title"]
+            )
+            for cluster_number in range(clusters)
+        }
+        for cluster_number in range(clusters):
+            base_label = label_by_cluster[cluster_number]
+            label = base_label
+            suffix = 2
+            while label in used_labels:
+                label = f"{base_label} ({suffix})"
+                suffix += 1
+            used_labels.add(label)
+            label_by_cluster[cluster_number] = label
+        labels = [label_by_cluster[cluster_number] for cluster_number in model.labels_]
         
         cluster_labels += labels
         base_ids += list(studs.ID.values)
 
     df_studies = pd.merge(df_studies, pd.DataFrame({'CID':base_ids, 'Cluster':cluster_labels}), left_on='ID', right_on='CID', how='left')
     df_studies.drop(columns=['CID'], inplace=True)
+    df_studies['BreakthruCluster'] = assign_super_clusters(df_studies)
 
     #Recalc edges
     df_network_test = df_network.copy(deep=True)
@@ -250,7 +317,7 @@ def build_network(term):
     df_network_test = df_network_test.rename(columns={"Cluster": "Target_cluster"})
     df_network_test.drop(columns=['ID'], inplace=True)
     df_edges = df_network_test.groupby(['Source_cluster', 'Target_cluster']).size().reset_index(name='count')
-    df_nodes = df_studies.groupby(['Bin', 'Cluster']).size().reset_index(name='count')
+    df_nodes = df_studies.groupby(['Bin', 'Cluster', 'BreakthruCluster']).size().reset_index(name='count')
 
     pmid = list(df_studies.ID.values)
     

@@ -1,8 +1,11 @@
-streamlit-agraph
-requests
+numpy
 pandas
+requests
 biopython
-tdqm
 matplotlib
+plotly
+streamlit
+streamlit-agraph
 wordcloud
 scikit-learn
+tqdm
