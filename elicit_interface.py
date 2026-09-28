@@ -12,12 +12,12 @@ def elicit_search(term):
     if not api_key:
         raise RuntimeError("ELICIT_API_KEY is missing from the environment or .env file")
 
-    research_question = f"""
-        What are the 10 most significant breakthroughs in Department of Veterans Affairs associated research, development, "
+    research_question = """
+        What are the 10 most significant breakthroughs in the research, development, 
         and clinical trials that brought {term} to market and shaped ongoing research? 
         Summarize them as a numbered list, not a timeline. Use only high-impact review 
-        articles and provide a list of citations.
-        """
+        articles and provide a list of citations. Be brief.
+    """
    
     headers = {"Authorization": f"Bearer {api_key}"}
 
