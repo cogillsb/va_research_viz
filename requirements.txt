@@ -1,6 +1,7 @@
 numpy
 pandas
 requests
+python-dotenv
 biopython
 matplotlib
 plotly
