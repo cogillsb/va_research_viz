@@ -83,14 +83,18 @@ for key, default in STATE_DEFAULTS.items():
     st.session_state.setdefault(key, default)
 
 
-def run_search(query: str) -> None:
-    df_studies, df_network, df_edges, df_nodes, authors = build_network(query)
+def run_search(query: str, progress_callback=None) -> None:
+    df_studies, df_network, df_edges, df_nodes, authors = build_network(
+        query, progress_callback=progress_callback
+    )
 
     if DEBUG_DUMP_CSV:
         for name, df in [("studies", df_studies), ("network", df_network),
                          ("edges", df_edges), ("nodes", df_nodes)]:
             df.to_csv(f"test_df_{name}.csv", index=False)
 
+    if progress_callback is not None:
+        progress_callback("Step 7 of 7: Assembling the interactive cluster graph.")
     nodes, edges, config = build_graph(df_nodes, df_edges)
     st.session_state.update(
         studies=df_studies,
@@ -126,8 +130,19 @@ with st.form("search_form", border=False):  # form => pressing Enter also submit
     submitted = st.form_submit_button("Submit")
 
 if submitted and search_query.strip():
-    with st.spinner("Building network…"):
-        run_search(search_query.strip())
+    with st.status(
+        "Step 1 of 7: Searching PubMed for VA studies across three study types.",
+        expanded=True,
+    ) as search_status:
+        def update_search_status(message: str) -> None:
+            search_status.update(label=message)
+
+        run_search(search_query.strip(), progress_callback=update_search_status)
+        search_status.update(
+            label="Search complete. The study network is ready.",
+            state="complete",
+            expanded=False,
+        )
     st.rerun()  # so the header stats above reflect the new results
 
 

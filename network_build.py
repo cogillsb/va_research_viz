@@ -10,25 +10,20 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 import math
+from elicit_interface import elicit_search
 
+def elicit_prompt(term):
+    """
+    Creating the elicit prompt.
+    """
+    prompt = f"""
+    Give me just 10 breakthroughs in research, development, and clinical trials
+    for the bringing of {term} to market and continued research as bullet points
+    and not as a timeline. Use only high impact review articles.
+    Give a list of citations.
+    """
 
-SUPER_CLUSTER_DESCRIPTIONS = {
-    "Identification of the Active GLP-1(7-37) Fragment":
-        "GLP-1(7-37) active fragment identification structure sequence receptor binding "
-        "proglucagon processing cleavage biologically active peptide",
-    "Gila Monster Venom and Exendin-4":
-        "Gila monster venom exendin-4 exenatide Heloderma suspectum venom peptide",
-    "Fatty Acid Acylation for Extended Half-Life":
-        "fatty acid acylation lipidation albumin binding extended half-life liraglutide "
-        "semaglutide pegylation long acting",
-    "Clinical Expansion to Obesity Management":
-        "clinical trial obesity overweight weight loss obesity management patient treatment "
-        "body weight metabolic disease",
-    "Multi-Receptor Co-Agonists":
-        "multi-receptor co-agonist dual agonist triagonist GLP-1 GIP glucagon receptor "
-        "multi agonism",
-}
-
+    return prompt
 
 def cluster_label(titles):
     """Return the two most frequent non-stopwords from cluster titles."""
@@ -41,20 +36,45 @@ def cluster_label(titles):
     return " ".join(word for word, _ in frequent_words) or "misc"
 
 
-def assign_super_clusters(df_studies):
-    """Assign each generated cluster to the closest requested topic."""
-    cluster_titles = (
-        df_studies.groupby("Cluster", sort=False)["Title"]
-        .agg(lambda titles: " ".join(str(title) for title in titles))
+def _study_text(df_studies):
+    return (
+        df_studies["Title"].fillna("").astype(str)
+        + " "
+        + df_studies["Abstract"].fillna("").astype(str)
     )
-    categories = list(SUPER_CLUSTER_DESCRIPTIONS)
-    corpus = list(cluster_titles) + list(SUPER_CLUSTER_DESCRIPTIONS.values())
+
+
+def assign_super_clusters(df_studies, descriptions):
+    """Assign each generated cluster to the closest Elicit description."""
+    descriptions = [
+        description.strip()
+        for description in descriptions
+        if description and description.strip()
+    ]
+    if not descriptions:
+        raise ValueError("Elicit returned no super-cluster descriptions")
+
+    study_text = _study_text(df_studies)
+    cluster_text = study_text.groupby(df_studies["Cluster"], sort=False).agg(
+        " ".join
+    )
+    categories = []
+    for index, description in enumerate(descriptions, start=1):
+        base_label = description
+        label = base_label
+        suffix = 2
+        while label in categories:
+            label = f"{base_label} ({suffix})"
+            suffix += 1
+        categories.append(label)
+
+    corpus = list(cluster_text) + descriptions
     vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 2))
     vectors = vectorizer.fit_transform(corpus)
-    cluster_vectors = vectors[:len(cluster_titles)]
-    category_vectors = vectors[len(cluster_titles):]
+    cluster_vectors = vectors[:len(cluster_text)]
+    category_vectors = vectors[len(cluster_text):]
     closest_categories = cosine_similarity(cluster_vectors, category_vectors).argmax(axis=1)
-    cluster_to_super_cluster = dict(zip(cluster_titles.index, [categories[i] for i in closest_categories]))
+    cluster_to_super_cluster = dict(zip(cluster_text.index, [categories[i] for i in closest_categories]))
     return df_studies["Cluster"].map(cluster_to_super_cluster)
 
 def fetch_pmids_on_search_term(quer_comps):
@@ -187,9 +207,14 @@ def filter_pmids(ids, query_filters):
         filtered_ids.extend(record["IdList"])
         
     return filtered_ids
-def build_network(term):
+
+def build_network(term, progress_callback=None):
     #Term to be searched on
     #term = "glp-1"
+
+    def update_progress(message):
+        if progress_callback is not None:
+            progress_callback(message)
 
     # Required by NCBI Entrez API
     Entrez.email = "steven.cogill@va.gov"
@@ -202,11 +227,13 @@ def build_network(term):
     animal_filter_query = '(Animals[Mesh]) NOT (Humans[Mesh])  NOT (Clinical Trial[Publication Type])'
     va_filter_query = '((va funded[Filter]) OR (Veterans Affairs[ad]) OR (Department of Veterans Affairs[ad]))'
 
+    update_progress("Step 1 of 7: Searching PubMed for VA studies across three study types.")
     clinical_studies = fetch_pmids_on_search_term([term, clinical_filter_query, va_filter_query])
     human_studies = fetch_pmids_on_search_term([term, human_filter_query, va_filter_query])
     animal_studies = fetch_pmids_on_search_term([term, animal_filter_query, va_filter_query])
 
 
+    update_progress("Step 2 of 7: Retrieving primary article details, abstracts, authors, and citations.")
     #Clinical
     df_clinical_studies, df_clinical_network, clinical_authors = build_layer(clinical_studies, 'clinical', 'Human', 1)
     hum_pmids = filter_pmids(df_clinical_network.Source.unique(), [va_filter_query, human_filter_query])
@@ -222,21 +249,12 @@ def build_network(term):
     ani_pmids += filter_pmids(df_human_network.Source.unique(), [va_filter_query, animal_filter_query])
     df_human_network = df_human_network[df_human_network.Source.isin(clin_pmids + ani_pmids)]
 
-
-
-
     #Animal
     df_animal_studies, df_animal_network, animal_authors = build_layer(animal_studies, 'animal', 'Animal', 1)
-    clin_pmids += filter_pmids(df_animal_network.Source.unique(), [va_filter_query, clinical_filter_query])
     hum_pmids += filter_pmids(df_animal_network.Source.unique(), [va_filter_query, human_filter_query])
     df_animal_network = df_animal_network[df_animal_network.Source.isin(clin_pmids + hum_pmids)]
 
-
-
-
-
-
-
+    update_progress("Step 3 of 7: Finding and retrieving studies cited by the primary articles.")
     #Buld out secondary tables
     df_clinical_sec_studies, df_clinical_sec_network, clinical_sec_authors = build_layer(clin_pmids, 'clinical', 'Human', 2)
     df_clinical_sec_network = df_clinical_sec_network[df_clinical_sec_network.Source.isin(hum_pmids + list(df_human_studies.ID.values) +
@@ -258,6 +276,7 @@ def build_network(term):
 
 
 
+    update_progress("Step 4 of 7: Combining study records and clustering titles with abstracts.")
     df_studies = pd.concat([df_clinical_studies, df_human_studies, df_animal_studies,
                         df_clinical_sec_studies, df_human_sec_studies, df_animal_sec_studies])
 
@@ -279,7 +298,7 @@ def build_network(term):
         clusters = int(math.sqrt((len(studs)/2)))
     
         vectorizer = TfidfVectorizer(stop_words='english')
-        X = vectorizer.fit_transform(studs.Title.values)
+        X = vectorizer.fit_transform(_study_text(studs).values)
         #Fit a model
         model = KMeans(n_clusters=clusters, init='k-means++', max_iter=200, n_init=10, random_state=42)
         model.fit(X)
@@ -306,8 +325,13 @@ def build_network(term):
 
     df_studies = pd.merge(df_studies, pd.DataFrame({'CID':base_ids, 'Cluster':cluster_labels}), left_on='ID', right_on='CID', how='left')
     df_studies.drop(columns=['CID'], inplace=True)
-    df_studies['BreakthruCluster'] = assign_super_clusters(df_studies)
+    update_progress("Step 5 of 7: Generating breakthrough descriptions with Elicit.")
+    breakthrough_descriptions = elicit_search(term)
+    df_studies['BreakthruCluster'] = assign_super_clusters(
+        df_studies, breakthrough_descriptions
+    )
 
+    update_progress("Step 6 of 7: Linking clusters and calculating citation strength.")
     #Recalc edges
     df_network_test = df_network.copy(deep=True)
     df_network_test = pd.merge(df_network_test, df_studies[['ID', 'Cluster']], left_on='Source', right_on='ID', how='left')

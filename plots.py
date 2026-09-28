@@ -106,7 +106,12 @@ def plot_cluster_timeline(
 
     per = (
         df.groupby(["BreakthruCluster", "Cluster", "Bin"], sort=False)
-        .agg(t=("t", "median"), n=("t", "size"))
+        .agg(
+            t=("t", "median"),
+            n=("t", "size"),
+            first_year=("year", "min"),
+            last_year=("year", "max"),
+        )
         .reset_index()
     )
     per["year"] = np.floor(per["t"]).astype(int)
@@ -189,7 +194,9 @@ def plot_cluster_timeline(
         points = per[per["Bin"] == bin_name]
         if points.empty:
             continue
-        customdata = points[["Cluster", "BreakthruCluster", "Bin", "n"]].to_numpy()
+        customdata = points[
+            ["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]
+        ].to_numpy()
         fig.add_trace(
             go.Scatter(
                 x=points["t"],
@@ -208,6 +215,7 @@ def plot_cluster_timeline(
                     "Breakthrough cluster: %{customdata[1]}<br>"
                     "Study type: %{customdata[2]}<br>"
                     "Studies: %{customdata[3]}<br>"
+                    "Publication year range: %{customdata[4]}-%{customdata[5]}<br>"
                     "Median publication year: %{x:.0f}<extra></extra>"
                 ),
             )
@@ -217,12 +225,18 @@ def plot_cluster_timeline(
     step = max(1, int(round(span / 8)))
     tick_years = np.arange(y_min, y_max + 1, step)
     fig.update_layout(
+        template="plotly_dark",
         height=max(420, 90 * len(breakthrough_clusters) + 150),
-        margin={"l": 20, "r": 240, "t": 70, "b": 35},
+        margin={"l": 20, "r": 20, "t": 70, "b": 90},
         hovermode="closest",
-        plot_bgcolor="white",
-        paper_bgcolor="white",
-        legend={"title": {"text": "Study type"}, "x": 1.02, "y": 1},
+        legend={
+            "title": {"text": "Study type"},
+            "x": 0,
+            "y": -0.15,
+            "xanchor": "left",
+            "yanchor": "top",
+            "orientation": "h",
+        },
         xaxis={
             "side": "top",
             "tickmode": "array",
