@@ -4,11 +4,11 @@ import time
 from pathlib import Path
 import requests
 from dotenv import load_dotenv
-
+import streamlit as st
 
 def elicit_search(term):
     load_dotenv(Path(__file__).with_name(".env"))
-    api_key = os.getenv("ELICIT_API_KEY")
+    api_key = st.secrets["ELICIT_API_KEY"]
     if not api_key:
         raise RuntimeError("ELICIT_API_KEY is missing from the environment or .env file")
 
