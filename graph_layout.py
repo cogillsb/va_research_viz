@@ -84,7 +84,7 @@ def build_graph(df_nodes: pd.DataFrame, df_edges: pd.DataFrame, top_edge_frac: f
     ]
 
     config = Config(
-        directed=False,
+        directed=True,
         physics=False,
         staticGraphWithDragAndDrop=False,
         nodeHighlightBehavior=True,
@@ -93,12 +93,18 @@ def build_graph(df_nodes: pd.DataFrame, df_edges: pd.DataFrame, top_edge_frac: f
             "shape": "dot",
             "labelProperty": "label",
             "fontColor": "#f8fafc",
-            "fontSize": 12,
+            "fontSize": 18,
             "renderLabel": True,
         },
         link={"highlightColor": "#4a90d9"},
+        interaction={
+        "zoomView": False,    # Disables scroll-to-zoom and double-click zoom
+        "dragView": True,     # Keeps panning/dragging enabled (set False to disable)
+        "dragNodes": True,    # Allows users to move individual nodes
+        "selectable": True,
+        },
         height=700,
-        width=1400,
+        width="100%",
         background="#13181f",
         hierarchical=True,
     )

@@ -1,11 +1,4 @@
-"""Matplotlib figures for the Graph Explorer app.
 
-Two figures:
-  * plot_landmark_timeline  - alternating-side timeline of landmark articles
-    * plot_cluster_timeline   - CiteSpace-style "timeline view": one horizontal
-                                                            lane per breakthrough cluster, study-cluster
-                                                            points coloured by bin, and citation arcs.
-"""
 from __future__ import annotations
 
 import re

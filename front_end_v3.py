@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import streamlit as st
 from streamlit_agraph import agraph
 from wordcloud import WordCloud
-
+#from summary_gen import summarize
 from graph_layout import BIN_STYLE, build_graph
 from network_build import build_network
 from plots import plot_cluster_timeline, plot_landmark_timeline
@@ -157,7 +157,8 @@ def render_landmark_timelines(studies) -> None:
             show_figure(plot_landmark_timeline(df_top))
 
             heading("Key Findings", 2)
-            findings = df_top.sort_values("Strength")["Abstract"].dropna()
+            findings = df_top.sort_values(by ="Strength", ascending=False)["Abstract"].dropna()
+            findings = [x.strip() for x in findings]
             st.markdown("\n".join(f"* {f}" for f in findings))
 
 
