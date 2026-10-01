@@ -1,11 +1,14 @@
 """Node/edge construction for the tripartite cluster graph (streamlit-agraph)."""
 from __future__ import annotations
 
+import textwrap
+
 import pandas as pd
 from streamlit_agraph import Config, Edge, Node
 
 GAP = 45            # px between neighbouring nodes
 ROW_OFFSET = 220    # vertical gap between the human row and the other layers
+FONT_SIZE = 38
 
 # Bin -> label noun, legend text, fill, border
 BIN_STYLE = {
@@ -16,16 +19,23 @@ BIN_STYLE = {
 
 
 def _node_size(row: pd.Series) -> float:
-    """Scale counts into readable circle radii without losing relative size."""
-    return max(32, 14 + 7 * float(row["count"]) ** 0.5)
+    """Scale counts into prominent node sizes while preserving their ratios."""
+    return max(48, 20 + 10 * float(row["count"]) ** 0.5)
 
 
 def _node(row, bin_name: str, x: float, y: float) -> Node:
     style = BIN_STYLE[bin_name]
+    size = _node_size(row)
+    label = str(row["Cluster"])
+    font = {"size": FONT_SIZE}
+    if bin_name == "human":
+        label = textwrap.fill(label, width=6, break_long_words=False)
+        font["vadjust"] = -(size + FONT_SIZE) * 2.3
+
     return Node(
         id=row["Cluster"],
-        label=row["Cluster"],
-        size=_node_size(row),
+        label=label,
+        size=size,
         x=x,
         y=y,
         color={
@@ -34,6 +44,7 @@ def _node(row, bin_name: str, x: float, y: float) -> Node:
             "highlight": {"background": "#4a90d9", "border": "#82b8f0"},
         },
         group=bin_name,
+        font=font,
     )
 
 
@@ -61,6 +72,17 @@ def _place_nodes(df_nodes: pd.DataFrame) -> list[Node]:
             nodes.append(_node(row, bin_name, x, y))
             x_cursor = x + direction * (sz + GAP)
             y_cursor = y + sz + GAP
+
+    if nodes:
+        min_x = min(node.x - node.size for node in nodes)
+        max_x = max(node.x + node.size for node in nodes)
+        min_y = min(node.y - node.size for node in nodes)
+        max_y = max(node.y + node.size for node in nodes)
+        center_x = (min_x + max_x) / 2
+        center_y = (min_y + max_y) / 2
+        for node in nodes:
+            node.x -= center_x
+            node.y -= center_y
     return nodes
 
 
@@ -93,7 +115,7 @@ def build_graph(df_nodes: pd.DataFrame, df_edges: pd.DataFrame, top_edge_frac: f
             "shape": "dot",
             "labelProperty": "label",
             "fontColor": "#f8fafc",
-            "fontSize": 18,
+            "fontSize": FONT_SIZE,
             "renderLabel": True,
         },
         link={"highlightColor": "#4a90d9"},
@@ -106,6 +128,6 @@ def build_graph(df_nodes: pd.DataFrame, df_edges: pd.DataFrame, top_edge_frac: f
         height=700,
         width="100%",
         background="#13181f",
-        hierarchical=True,
+        hierarchical=False,
     )
     return nodes, edges, config

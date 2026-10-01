@@ -1,0 +1,694 @@
+Author
+Vincent Wu
+Erin E Thompson
+Craig J McClain
+Kjersti Rich
+Michael F McLemore
+Joseph R Pisegna
+Karen Kimura
+Medha Priyadarshini
+Steven V Edelman
+Hong Zhang
+Karla C Hurt
+Volker Vallon
+Leon Luong
+Marc A Suchard
+Christopher M Kramer
+Debra Saliba
+Hashem B El-Serag
+Carol A Casey
+Natalie Koury Wissman
+Jinlin He
+Kenneth Cusi
+Edimar Bocchi
+Irene E Schauer
+Hans-Peter Brunner-La Rocca
+Roxanne Desiderio
+John P Thyfault
+Chintan V Dave
+Ramesh Bellamkonda
+Javed Butler
+Riley Weaver
+Glenn N Levine
+Steven D Coon
+Persio David Lopez
+Jiande D Z Chen
+Eileen O'Meara
+Emilio D Poggio
+Michael R Zile
+Suzanne Craft
+Neil R Powe
+Stephen W Waldo
+Drew A Rideout
+Roberto Kalil
+Karen Armbrust
+David J Leehey
+James E Blevins
+David M Charytan
+Anna Korpak
+Mohamed Omer
+Therese S Salameh
+Dan Dobreanu
+Kyra A Shelton
+Edwina Choung
+Mohammad Dar
+Angelica J Motta
+Bruce Neal
+Mohamad Mokadem
+Ahmed M Elmansi
+David T Wood
+LiMei Qin
+Renzhi Cai
+Mihaela Aslan
+João P Ferreira
+Patrizia M Germano
+K Zhao
+Patrick Schloemer
+Juraj Koska
+Paola Portillo-Sanchez
+Angela Radulescu
+Xiaodong Zhu
+Elizabeth M Rhea
+Elizabeth Colombo
+Seema Saksena
+George Hripcsak
+Mary Jane Nettles
+Karuna Rasineni
+Calvin Eng
+Jennifer C Dunn
+Luca Szalontay
+Elizabeth E Hanchrow
+Robert M Cohen
+Carol Pollock
+Guang-Yu Yang
+Sheldon E Litwin
+Bertram Pitt
+Josef Coresh
+Sankar D Navaneethan
+Ronald L Prigeon
+Medhi Wangpaichitr
+Mahboob Rahman
+Sandhya S Thomas
+Michael F LaFountaine
+Vinh Nguyen Pham
+Miklos Jaszberenyi
+Kusum K Kharbanda
+Adeera Levin
+Xian Yu
+Perica Davitkov
+Arielle Gabalski
+Yaling Han
+Sanjay Kaul
+Jill P Crandall
+A Burke Gurney
+Jose Walter Cabrera Honorio
+Yingying Sang
+Ionut Bebu
+Stephen J Freedland
+Stéphanie B Mayer
+Arijeet K Gattu
+Torsten P Vahl
+Benjamin Viernes
+Payal Kohli
+Bethany A Carboneau
+Jerry P Palmer
+Matthew R Moll
+Petra Popovics
+Kathryn M Hurren
+Chandrashekar Bohra
+Denis G Baskin
+John P Vu
+William Parsons
+Rodica Pop-Busui
+Benedikt A Aulinger
+Susan Phillips
+Christine P Petersen
+Nathorn Chaiyakunapruk
+Amy B Karger
+Clifford Qualls
+Jennifer Huffman
+Matthew J Crowley
+Magnus Petersson
+Lawrence Baruch
+Salim S Virani
+Brian Claggett
+Kamal Rahmouni
+R H Erickson
+Robert Henry
+Yukiomi Nakade
+William Aronson
+Jonathan Zhang
+Jesse C Christensen
+G Gaich
+Vasilios Papademetriou
+J D Kaunitz
+Elliott Lowy
+Karin J Bosma
+William C Cushman
+Gerald J Taborsky
+K C Lloyd
+Korri S Hershenhouse
+Michele Senni
+Michael C Wang
+David A D'Alessio
+Christopher P Cannon
+Daniel Anthony DiLeo
+Deidra C Crews
+Elizabeth Selvin
+Hermes J Florez
+Christian M Warren
+R Harsha Rao
+James L Januzzi
+Julie A Lynch
+Nicholas Kenyon
+Christina Nowack
+Karen Atkinson
+Scott A Soleimanpour
+Sabina Casula
+Neda Rasouli
+Sathish Kumar Perumal
+Yasutada Akiba
+Juan Esteban Gomez-Mesa
+Sanket S Dhruva
+Varman T Samuel
+Matthew Lane
+Aoun Laurence
+Brian C Lund
+Alexander C Peterson
+Roger Rodby
+J R Strawn
+Marc Suchard
+Olivia M Hopton
+Orlando M Gutiérrez
+Paul G Thomes
+Anders Grubb
+Michael Steffes
+Marissa W Dunham
+Jian Zhang
+Nikolaus Marx
+Huang-Ge Zhang
+Susan A Farr
+Cordula Zeller
+Jennifer R Kramer
+Julio Lopez
+Olivia Papacostea
+Michael Throolin
+Jiahua Li
+Seth J Baum
+Ravinder Singh
+M Shawn McFarland
+Natasha Dave
+Camelia Burciu
+R Stokes Peebles
+Tina E French
+Elena Barengolts
+Mitchell L Schubert
+Andrew V Schally
+Konstantinos Imprialos
+Prasanth K Chelikani
+D L Bhatt
+Julia M Akeroyd
+Jason A Egge
+Anastasia-Stefania Alexopoulos
+Anna Maria Langkilde
+Alip Borthakur
+Melanie R Jay
+Alexander T Sandhu
+Robert Edwards
+Kenneth W Mahaffey
+Peter D Reaven
+Chern-En Chiang
+Janet Schnee
+June Zhou
+Adam J Obley
+Gabriella A Tagliapietra
+Ravi Choxi
+Lawrence S Phillips
+Mark Tripputi
+Pradeep Mutalik
+Kusum Kharbanda
+Stephen J Pandol
+Muthiah Vaduganathan
+Jan Belohlavek
+Naji Younes
+Andrew S Levey
+John R Teerlink
+Scott D Solomon
+Ajay Sood
+Julio A Chirinos
+Irving Vidaurre
+J V Pardo
+Kyung Min Lee
+Donald R Miller
+Kalpana Velmurugan
+Dick de Zeeuw
+J Antonio Gutierrez
+Deborah J Wexler
+Waheed Jamal
+Alessandro Doria
+Ray Stokes Peebles
+Gurkirat S Brar
+Gregory T Cross
+Ronald Samuel
+Andrew J Morris
+W A Banks
+Leonid V Zingman
+Peter Kolkhof
+George Bakris
+Matthew A Cantrell
+Margaret Tiktin
+Hanifah Davis
+Breanne M Barrow
+Ian H de Boer
+Michelle T Lee
+Stefano Taddei
+Gerald W Dryden
+Shuruq A Atway
+James Januzzi
+Dawn Wolfgram
+Jennifer A Teske
+Pardeep S Jhund
+Liang Chen
+P Mason McClatchey
+Amer Joseph
+Catherine Vu
+Andrew D Rule
+Stefan D Anker
+Biykem Bozkurt
+Carolyn S P Lam
+Dragos Vinereanu
+Basma N Fattaleh
+Barry Wall
+Jindrich Spinar
+Geetu Raheja
+Raymond Q Migrino
+John M Stafford
+Sunder Mudaliar
+Ayse Aytaman
+Sara J Couture
+Shubha Priyamvada
+Vlado Perkovic
+Matthew J Potthoff
+Mona Mashayekhi
+David E Cummings
+Amir Zarrinpar
+Kim Hansen
+Rebecca L Hull
+William O'Brien
+Tzvetana Katova
+Peter Thomas
+Mary E Larkin
+Spencer R Andrei
+David Sim
+Tannaz Moin
+John B Buse
+Kelly Cooper-Cox
+Terrence Michael A Litam
+Heather M Gilmartin
+William A Banks
+Karsten Duncan
+Stephen P Fortmann
+Utibe R Essien
+Judith G Regensteiner
+Brian T Layden
+Ravneet Sandhu
+M Doumas
+Joshua P Thaler
+John M Lachin
+Kevin Niswender
+Stavros Drakos
+Lauren A Beste
+Daniel Lindholm
+Marie-France Seronde
+Hocine Tighiouart
+Rodger A Liddle
+Andrea L Cherrington
+Samuel Grossman
+Nwamaka D Eneanya
+Michael Shawn McFarland
+Subbiah Pugazhenthi
+Edward J Boyko
+Stuart J Pocock
+Piotr Ponikowski
+Michael Zile
+Helen Petrovitch
+Dmitry Kondrikov
+Dan-Vinh Nguyen
+Jennifer Meyer Reid
+Scott C Thomson
+Marco Antonio Alcocer-Gamba
+Vijay Chopra
+Jose R Gonzalez-Juanatey
+Ritikaa Khanna
+Sundararajan Mahalingam
+Nicole M Butera
+William F Parsons
+Timothy E Reddy
+Scott L DuVall
+Avnee J Kumar
+Steve V Edelman
+Junbo Ge
+Linda Tran
+Y Akiba
+S Vincent Wu
+Shoshana H Ballew
+William Duckworth
+Jennifer A Jende
+Jane E B Reusch
+Edison Tsui
+Joshua R Willard
+Meg J Jardine
+Stefan P Janssens
+Andrew D Dodson
+Marcela Brissova
+Wayne Ho
+Peter W Groeneveld
+Jose R Gonzalez Juanatey
+Daniel R Katzenberger
+Daniel Cotton
+D Melle-Milovanovic
+Michael L Niehoff
+Sabyasachi Sen
+Alfred K Cheung
+Sergio V Perrone
+Amy Claxton
+Ileana L Piña
+Janani Rangaswami
+Cong Guo
+Nadia Giannetti
+Jingmao Li
+J M Meyer
+Jacy L Kubik
+Magdolna Kovacs
+David J Ramsey
+Gerjan Navis
+J Eng
+Nicholas Wettersten
+Eric S Nylen
+Scott Bull
+Jesse C Seegmiller
+Janet M Schnee
+Pei-Ling Chu
+Luca F Valle
+Angeline Fry
+Lesley A Inker
+S Zola-Morgan
+Henry B Burch
+Haibo Wang
+Marta Zarandi
+Nancee V Waterbury
+Mathijs C Bunck
+Srinivasan Beddhu
+Kieren J Mather
+Elizabeth A Cook
+George N Ioannou
+Waddah A Alrefai
+Diana Barb
+Marlene A Wilson
+Casey H Halpern
+Christoph Wanner
+Subodh Verma
+Sergey N Tereshchenko
+Takuya Inoue
+Masafumi Kitakaze
+Christopher M Cirnigliaro
+Arivarasu N Anbazhagan
+Ferenc G Rick
+Sankar Navaneethan
+Barbara M Brooks-Worrell
+Cynthia Delgado
+Amy C Justice
+Rajiv Agarwal
+Phillip B Hylemon
+Richard M Breyer
+J R Goldenring
+Bela Merkely
+Rebecca L Hull-Meichle
+Debra Benator
+Tom Greene
+Sven Schnaidt
+Keith C Chan
+N Zeng
+Michael J Ryan
+Orly Vardeny
+Tengjiao Cui
+Joseph J Castillo
+McKenna Nevers
+Roger D Reidelberger
+George Capuano
+Wei Sha
+Faraaz A Shah
+Sumon Roy
+Ruben Hernaez
+Bria Sydner
+Jincheng Shen
+Alvin Haver
+Angela Haczku
+Karen Servilla
+Muhammad Nauman Jhandier
+Ion S Jovin
+Peter Carson
+Christopher T Rentsch
+Stavros G Drakos
+David C Wheeler
+Milton Packer
+Michael G Shlipak
+Kevin D Niswender
+Michelle M Estrella
+Jan Basile
+William G Bain
+Norman L Block
+Iain Squire
+Peter Reaven
+Laure Sayyed Kassem
+Nancy J Shen
+Michael Matheny
+Yshai Yavin
+Sameed Ahmed M Khatana
+Alice Babin
+Eric Davidson
+Hilary E Wilson-Pérez
+Charles S Dela Cruz
+Robin A Hurley
+Suzanna W Shieh
+Vicente E Torres
+Julie M Paik
+Yu Wang
+Kavish R Patidar
+Jared D Slattery
+Samuel Herberg
+Ron Bouchard
+Matvey Goldberg
+Waleed Al Habeeb
+Lawrence P Reagan
+Jiemin Liu
+Robert L Raffai
+Gabor Halmos
+Michael E Matheny
+Katherine R Simon
+Jessica Yoon
+David M Nathan
+Faiez Zannad
+Kristen M Kulasa
+Willy M Valencia
+Pankaj Arora
+Cherylyn Beckey
+Michael C Petriello
+Carol Casey
+Tami Wolden-Hanson
+Roger Reidelberger
+Samuel T Kuna
+Robert E Boucher
+Heidi Krause-Steinrauf
+Omar Mesarwi
+Silvio E Inzucchi
+Ulrica Wilderäng
+Martina Brueckmann
+Rona Zhou
+Anthony R Angueira
+R Scott Rector
+Thomas H Leung
+John M Canty
+Cyrus V Desouza
+Adrian F Hernandez
+Alvin C Powers
+John J V McMurray
+Oltjon Albajrami
+Melinda Amornyard
+Michael F La Fountaine
+Joachim H Ix
+Kristina M Utzschneider
+Fei Dai
+Kirtipal Bhatia
+Christopher Hupfeld
+Arthur Swislocki
+Luis M Ruilope
+Erasmus Bachus
+David R Sinacore
+Carolyn Su Ping Lam
+James R Goldenring
+Andrew R Zullo
+Shruti M Gandhi
+Hiroyuki Tsutsui
+Eduardo Chuquiure
+Wei Yang
+Franck Mauvais-Jarvis
+Marguerite Daus
+Amy Lo
+Rudolf A de Boer
+Amanda Howard-Thompson
+Jonathan D Kaunitz
+Noor Abdulhameed
+Heidi Silver
+Suwan Oh
+Hayden B Bosworth
+Mackenzie K Honeycutt
+Kelson Zawack
+George L Bakris
+H M Said
+Koji Maruta
+Eunyoung Choi
+Nadejda Bozadjieva-Kramer
+Bärbel Rohrer
+Peter Rossing
+Andrew Buelt
+Jorge Thierer
+Stephen J Nicholls
+Shanthi Srinivasan
+Rehana Akter
+Izumi Kaji
+Violet Lagari
+M Sue Kirkman
+James C Fang
+Pradeep K Dudeja
+Wilfredo López-Ojeda
+Rebekah J Walker
+Lina Aguirre
+Naveed Sattar
+Joshua Norris
+Shahnaz Sultan
+Eduardo Chuquiure-Valenzuela
+Hiddo J L Heerspink
+Ellis R Levin
+Anton E Ludvik
+Dennis T Villareal
+Daniel Sanford
+Kathryn N Porter Starr
+Nguyet T Nguyen
+Barbara Gulanski
+Arpi H Roach
+Ted Robert Grabarczyk
+Jaroslaw Drozdz
+McKenna R Nevers
+Nathalie Esser
+Laura A Petersen
+Xianzhong Ding
+Derek D Mafong
+Debra L Waters
+Steven E Kahn
+Stefan Janssens
+Eva Pozsgai
+Gary Meininger
+Natalia Zaozerska
+Chelsea E Hawley
+Huiping Zhou
+Morgan E Grams
+Nadim Mahmud
+Guo Wei
+John R Koethe
+Barry A Borlaug
+Luis Tulloch-Palomino
+Jose Francisco Kerr Saraiva
+David DeMets
+Govinda J Weerakkody
+V Joshi
+Xianyang Zhang
+Lei Yan
+Yoshio N Hall
+Sergio Perrone
+Pierre Asselin
+Ann M Spungen
+Sakeneh Zraika
+Ernesto Bernal-Mizrachi
+Bernard Zinman
+Ashok Balasubramanyam
+Annika Hebbe
+Amit Goel
+Michael Mauer
+Robert G Nelson
+Varsha Singh
+Atsukazu Kuwahara
+Mallory L Accursi
+Madan Kumar Arumugam
+L Parker Gregg
+Angela Linderholm
+Michael Böhm
+Dan Wang
+William J O'Brien
+C Jan Willem Borleffs
+Ikuo Kato
+Jacqueline M Ho
+Gregory M Cole
+Digavalli V Sivarao
+Steven Edelman
+Alexis Rose
+Yang Ou
+Sophia H Hox
+Stephen M Mongovin
+Ravinder K Gill
+Cyrus Desouza
+Angela Zielinski
+Dhruv Mahtta
+Mikhail N Kosiborod
+William L Lowe
+Dong-Ju Choi
+June R Rambousek
+Jennifer B Green
+Michael W Holliday
+Michelle Sands
+Kasia J Lipska
+William A Bauman
+William D Hill
+Konstantinos Stavropoulos
+Sarah Pemberton
+Marc Froissart
+Connie M Rhee
+Brendy S Fountaine
+Béla Merkely
+Donald D Anthony
+Masahiro Murakami
+Kristen Wilhite
+Ann Marie Householder
+Satish K Singh
+Felipe Martinez
+Ileana Pina
+Anoop Kumar
+Gerasimos Filippatos
+Leonard E Egede
+Heidi J Silver
+Sanjiv J Shah
+Akshay S Desai
+Barry M Brenner
+Maureen Gannon
+Robert R Henry
+Josep Comin-Colet
+Jieyun Yin
+Reina Armamento-Villareal
+Emily E Cole
+Michael Doumas
+Jeremy Pettus
+Carolina M Pusec
+Raymond Thai
+Fasiha Kanwal
+Yumei Cao
+Pandora L Wander
+Ramsey Cheung
+Dolores M Cortez
+David H Au
+Linda F Fried
+Sydney E Hartsell
+Ron L Prigeon
+Severine Bompoint
+Vilmundur Gudnason
+Venu Menon
+Lois A Katz

@@ -55,6 +55,7 @@ def plot_cluster_timeline(
     *,
     max_clusters: int = 10,
     max_links: int = 40,
+    selected_cluster: str | None = None,
 ):
     """Plot one lane per breakthrough cluster and points for study clusters.
 
@@ -69,7 +70,13 @@ def plot_cluster_timeline(
     if missing:
         raise KeyError(f"Missing timeline columns: {sorted(missing)}")
     df = df.dropna(subset=["BreakthruCluster", "Cluster", "Bin"])
-    df["BreakthruCluster"] = df["BreakthruCluster"].astype(str)
+    df["BreakthruCluster"] = (
+        df["BreakthruCluster"]
+        .astype(str)
+        .str.replace(r"(?is)<citations>.*?(?:<citations/>|</citations>)", "", regex=True)
+        .str.replace(r"\s+", " ", regex=True)
+        .str.strip()
+    )
     df["Cluster"] = df["Cluster"].astype(str)
     df["Bin"] = df["Bin"].astype(str).str.lower()
     df["t"] = _fractional_year(df["Date"])
@@ -203,6 +210,10 @@ def plot_cluster_timeline(
                     "opacity": 0.85,
                 },
                 customdata=customdata,
+                hoverlabel={
+                    "align": "left",
+                    "showarrow": True,
+                },
                 hovertemplate=(
                     "<b>Cluster %{customdata[0]}</b><br>"
                     "Breakthrough cluster: %{customdata[1]}<br>"
@@ -213,6 +224,25 @@ def plot_cluster_timeline(
                 ),
             )
         )
+
+    if selected_cluster is not None:
+        selected_points = per[per["Cluster"] == str(selected_cluster)]
+        if not selected_points.empty:
+            fig.add_trace(
+                go.Scatter(
+                    x=selected_points["t"],
+                    y=selected_points["y"],
+                    mode="markers",
+                    marker={
+                        "symbol": "circle-open",
+                        "size": 42,
+                        "color": "#facc15",
+                        "line": {"color": "#facc15", "width": 3},
+                    },
+                    hoverinfo="skip",
+                    showlegend=False,
+                )
+            )
 
     # Years run along the top; breakthrough-cluster lanes run horizontally.
     step = max(1, int(round(span / 8)))
@@ -242,7 +272,10 @@ def plot_cluster_timeline(
         yaxis={
             "tickmode": "array",
             "tickvals": [lane[c] for c in breakthrough_clusters],
-            "ticktext": [f"# {c}" for c in breakthrough_clusters],
+            "ticktext": [
+                f"# {textwrap.fill(c, width=44, subsequent_indent='  ').replace(chr(10), '<br>')}"
+                for c in breakthrough_clusters
+            ],
             "range": [-1, (len(breakthrough_clusters) - 1) * lane_gap + 1],
             "showgrid": False,
             "zeroline": False,
