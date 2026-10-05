@@ -284,6 +284,12 @@ def render_sidebar(clicked_node) -> None:
 clicked = None
 if has_results:
     studies = st.session_state.studies   
+    st.download_button(
+        label="Download studies CSV",
+        data=studies.to_csv(index=False).encode("utf-8"),
+        file_name="df_studies.csv",
+        mime="text/csv",
+    )
     cluster_timeline_slot = st.empty()
     clicked = render_graph()
     with cluster_timeline_slot.container():
