@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from copy import copy
 import html
+import re
 from pathlib import Path
 from urllib.parse import quote
 
@@ -17,7 +18,7 @@ from graph_layout import BIN_STYLE, build_graph
 from network_build import build_network
 from plots import plot_cluster_timeline, plot_landmark_timeline
 
-DEBUG_DUMP_CSV = False  # write the dataframes returned by build_network to disk
+DEBUG_DUMP_CSV = True  # write the dataframes returned by build_network to disk
 DATA_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
@@ -85,6 +86,7 @@ STATE_DEFAULTS = {
     "graph_config": None,
     "authors": [],
     "term": "",
+    "masked_nodes": set(),
 }
 for key, default in STATE_DEFAULTS.items():
     st.session_state.setdefault(key, default)
@@ -175,8 +177,6 @@ if submitted and search_query.strip():
         )
     st.rerun()  # so the header stats above reflect the new results
 
-
-# ── Sections ─────────────────────────────────────────────────────────────────
 def render_landmark_timelines(studies) -> None:
     with st.expander("Landmark article timelines", expanded=True):
         for bin_name in studies["Bin"].unique():
@@ -191,6 +191,53 @@ def render_landmark_timelines(studies) -> None:
             findings = [x.strip() for x in findings]
             st.markdown("\n".join(f"* {f}" for f in findings))
 
+# ── Sections ─────────────────────────────────────────────────────────────────
+def render_landmark_timelines(studies) -> None:
+    with st.expander("Landmark article timelines", expanded=True):
+        for bin_name in studies["Bin"].unique():
+            df_bin = studies[(studies["Bin"] == bin_name) & (studies["Degree"] == 1)].copy()
+            df_bin = df_bin.drop_duplicates(subset=["Abstract"]).copy()
+            df_top = df_bin.head(10).sort_values("Date")
+
+            heading(f"{bin_name.capitalize()} Landmark VA Articles Timeline")
+            show_figure(plot_landmark_timeline(df_top))
+
+            heading("Key Findings", 2)
+            for btc in df_top.BreakthruCluster.unique():
+
+                sub_head = re.sub(r"(?is)<citations>.*?(?:<citations/>|</citations>)", "", btc)
+                sub_head = re.sub(r"\s+", " ", sub_head)
+                sub_head = sub_head.strip()
+
+                heading(sub_head, 3)
+                cluster_df = df_top[df_top.BreakthruCluster == btc]
+                findings = (
+                    cluster_df.sort_values(by="Strength", ascending=False)
+                    .dropna(subset=["Title", "Abstract", "ID", "Years"])
+                    .head(5)
+                    .copy()
+                )
+
+                for _, row in findings.iterrows():
+                    text = str(row.get("Abstract", "")).strip()
+                    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
+                    excerpt = " ".join(sentences[-3:]) if len(sentences) >= 3 else " ".join(sentences)
+                    if not excerpt:
+                        continue
+
+                    study_id = str(row.get("ID", "")).strip().removesuffix(".0")
+                    pubmed_url = f"https://pubmed.ncbi.nlm.nih.gov/{quote(study_id, safe='')}/"
+                    title = html.escape(str(row.get("Title", "")).strip())
+                    year = str(row.get("Years", "")).strip()
+
+                    st.markdown(
+                        f'<p style="color:white; margin-bottom:0.5rem;">'
+                        f'{html.escape(excerpt)}</p>'
+                        f'<a href="{pubmed_url}" target="_blank" rel="noopener noreferrer">'
+                        f'{title} ({year})</a><br>',
+                        unsafe_allow_html=True,
+                    )
+
 
 def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
     with st.expander("VA research timeline by cluster", expanded=True):
@@ -204,6 +251,22 @@ def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
                 studies, df_edges, selected_cluster=clicked_node
             )
         )
+
+
+def _connected_node_mask(clicked_node: str | None) -> set[str]:
+    if not clicked_node:
+        return set()
+
+    connected = {str(clicked_node)}
+    edges = st.session_state.get("df_edges")
+    if edges is not None and not edges.empty:
+        mask = edges[
+            (edges["Source_cluster"].astype(str) == str(clicked_node))
+            | (edges["Target_cluster"].astype(str) == str(clicked_node))
+        ]
+        connected |= set(mask["Source_cluster"].astype(str))
+        connected |= set(mask["Target_cluster"].astype(str))
+    return connected
 
 
 def render_graph() -> str | None:
@@ -229,9 +292,20 @@ def render_graph() -> str | None:
             graph_config.width = "100%"
             graph_config.height = "740px"
 
+            nodes = list(st.session_state.nodes)
+            edges = list(st.session_state.edges)
+            masked_nodes = st.session_state.get("masked_nodes", set())
+            if masked_nodes:
+                nodes = [node for node in nodes if str(node.id) not in masked_nodes]
+                edges = [
+                    edge
+                    for edge in edges
+                    if str(edge.source) not in masked_nodes and str(edge.target) not in masked_nodes
+                ]
+
             return agraph(
-                nodes=st.session_state.nodes,
-                edges=st.session_state.edges,
+                nodes=nodes,
+                edges=edges,
                 config=graph_config,
             )
 
@@ -244,6 +318,8 @@ def render_authors() -> None:
         )
         heading("Contributing VA Researchers")
         heading(f"{len(authors)} VA researchers have worked toward advancing {st.session_state.term}", 3)
+        heading(f"{len(st.session_state.studies)} studies were generated", 3)
+                
         cols = st.columns(3)
         for i, name in enumerate(authors):
             cols[i % 3].markdown(f'<span style="color:white">{name}</span>', unsafe_allow_html=True)
@@ -257,6 +333,13 @@ def render_sidebar(clicked_node) -> None:
                 return
 
             st.write(f"**Selected Node:** {clicked_node}")
+            mask_clicked = st.button("Mask selected + connected nodes", type="secondary")
+            if mask_clicked:
+                st.session_state.masked_nodes = _connected_node_mask(clicked_node)
+
+            if st.session_state.get("masked_nodes"):
+                st.caption("Connected nodes are hidden.")
+
             studies = st.session_state.studies
             selected_studies = studies.loc[
                 studies["Cluster"].astype(str) == str(clicked_node), ["ID", "Title", "Years"]
@@ -283,7 +366,7 @@ def render_sidebar(clicked_node) -> None:
 # ── Page body (only after a search has been run) ─────────────────────────────
 clicked = None
 if has_results:
-    studies = st.session_state.studies   
+    studies = st.session_state.studies
     st.download_button(
         label="Download studies CSV",
         data=studies.to_csv(index=False).encode("utf-8"),
