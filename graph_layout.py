@@ -29,8 +29,10 @@ def _node(row, bin_name: str, x: float, y: float) -> Node:
     label = str(row["Cluster"])
     font = {"size": FONT_SIZE}
     if bin_name == "human":
-        label = textwrap.fill(label, width=6, break_long_words=False)
-        font["vadjust"] = -(size + FONT_SIZE) * 2.3
+        label = textwrap.fill(label, width=10, break_long_words=False, break_on_hyphens=False)
+        font["vadjust"] = -(size + FONT_SIZE) * 2.5
+        font["align"] = "left"
+        font["angle"] = -18
 
     return Node(
         id=row["Cluster"],
@@ -51,12 +53,15 @@ def _node(row, bin_name: str, x: float, y: float) -> Node:
 def _place_nodes(df_nodes: pd.DataFrame) -> list[Node]:
     nodes: list[Node] = []
 
-    # Human: single row, left -> right
+    # Human: stagger between two horizontal axes to separate long wrapped labels.
+    # Reserve extra room for node size, font height, and the negative vadjust.
+    human_rows = df_nodes[df_nodes["Bin"] == "human"]
     x_cursor = 0
-    for _, row in df_nodes[df_nodes["Bin"] == "human"].iterrows():
+    for idx, (_, row) in enumerate(human_rows.iterrows()):
         sz = _node_size(row)
         x = x_cursor + sz
-        nodes.append(_node(row, "human", x, 0))
+        y = 0 if idx % 2 == 0 else -200
+        nodes.append(_node(row, "human", x, y))
         x_cursor = x + sz + GAP
     row_end = x_cursor
 
@@ -94,16 +99,21 @@ def build_graph(df_nodes: pd.DataFrame, df_edges: pd.DataFrame, top_edge_frac: f
     nodes = _place_nodes(df_nodes)
 
     keep = df_edges.nlargest(int(len(df_edges) * top_edge_frac), "count")
-    edges = [
-        Edge(
-            source=r["Source_cluster"],
-            target=r["Target_cluster"],
-            type="CURVE_SMOOTH",
-            width=r["count"],
-            color={"color": "#252d3d", "highlight": "#4a90d9", "opacity": 0.8},
+    edges = []
+    for _, r in keep.iterrows():
+        source = str(r["Source_cluster"])
+        target = str(r["Target_cluster"])
+        count = int(r["count"])
+        edges.append(
+            Edge(
+                source=source,
+                target=target,
+                type="CURVE_SMOOTH",
+                width=count,
+                color={"color": "#252d3d", "highlight": "#4a90d9", "opacity": 0.8},
+                title=f"{source} → {target} · {count} citations",
+            )
         )
-        for _, r in keep.iterrows()
-    ]
 
     config = Config(
         directed=True,

@@ -6,11 +6,12 @@ from pathlib import Path
 from itertools import batched
 from collections import Counter
 from tqdm import tqdm
-from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
 import math
 from elicit_interface import elicit_search
+
 
 def elicit_prompt(term):
     """
@@ -25,18 +26,11 @@ def elicit_prompt(term):
 
     return prompt
 
-def cluster_label(titles):
-    """Return the two most frequent non-stopwords from cluster titles."""
-    words = re.findall(
-        r"[a-z][a-z0-9]*(?:-[a-z0-9]+)*", " ".join(map(str, titles)).lower()
-    )
-    frequent_words = Counter(
-        word for word in words if word not in ENGLISH_STOP_WORDS
-    ).most_common(2)
-    return " ".join(word for word, _ in frequent_words) or "misc"
+
 
 
 def _study_text(df_studies):
+
     return (
         df_studies["Title"].fillna("").astype(str)
         + " "
@@ -94,13 +88,23 @@ def fetch_authors(auth_article):
     """
     authors = []
     try:
-        #Drill down to author list
+        # Drill down to the author list and keep authors whose affiliation matches
+        # Veterans Affairs or VA-based healthcare system naming patterns.
+        va_re = re.compile(
+            r"(?:\bVeterans Affairs\b|\bVA\b).*?(?:\bHealthcare System\b|\bHealth Care System\b)",
+            flags=re.IGNORECASE,
+        )
         for author in auth_article['MedlineCitation']['Article']['AuthorList']:
-            for affil in author['AffiliationInfo']:
-                # Look for VA-related strings
-                if (any(sub in affil['Affiliation'] for sub in ['Veterans Affairs'])):     
+            for affil in author.get('AffiliationInfo', []):
+                affiliation = str(affil.get('Affiliation', '')).strip()
+                lower_affiliation = affiliation.lower()
+                if (
+                    'veterans affairs' in lower_affiliation
+                    or 'va' in lower_affiliation
+                    or va_re.search(affiliation)
+                ):
                     authors.append(f"{author['ForeName']} {author['LastName']}")
-    except:
+    except Exception:
         pass
     return authors
 
@@ -225,7 +229,7 @@ def build_network(term, progress_callback=None):
     clinical_filter_query = '(Clinical Trial[Publication Type])'
     human_filter_query = '(Humans[MeSH])  NOT (Clinical Trial[Publication Type])'
     animal_filter_query = '(Animals[Mesh]) NOT (Humans[Mesh])  NOT (Clinical Trial[Publication Type])'
-    va_filter_query = '((va funded[Filter]) OR (Veterans Affairs[ad]) OR (Department of Veterans Affairs[ad]))'
+    va_filter_query = '((va funded[Filter]) OR (Veterans Affairs[ad])  OR (Department of Veterans Affairs[ad]) OR (VA[ad] AND Healthcare System[ad]))'
 
     update_progress("Step 1 of 7: Searching PubMed for VA studies across three study types.")
     clinical_studies = fetch_pmids_on_search_term([term, clinical_filter_query, va_filter_query])
@@ -242,17 +246,20 @@ def build_network(term, progress_callback=None):
 
 
 
-
     #Human
     df_human_studies, df_human_network, human_authors = build_layer(human_studies, 'human', 'Human', 1)
     clin_pmids = filter_pmids(df_human_network.Source.unique(), [va_filter_query, clinical_filter_query])
     ani_pmids += filter_pmids(df_human_network.Source.unique(), [va_filter_query, animal_filter_query])
     df_human_network = df_human_network[df_human_network.Source.isin(clin_pmids + ani_pmids)]
 
+  
+
     #Animal
     df_animal_studies, df_animal_network, animal_authors = build_layer(animal_studies, 'animal', 'Animal', 1)
     hum_pmids += filter_pmids(df_animal_network.Source.unique(), [va_filter_query, human_filter_query])
     df_animal_network = df_animal_network[df_animal_network.Source.isin(clin_pmids + hum_pmids)]
+
+    print(len(df_animal_studies))
 
     update_progress("Step 3 of 7: Finding and retrieving studies cited by the primary articles.")
     #Buld out secondary tables
@@ -303,12 +310,25 @@ def build_network(term, progress_callback=None):
         model = KMeans(n_clusters=clusters, init='k-means++', max_iter=200, n_init=10, random_state=42)
         model.fit(X)
         labels = []
-        label_by_cluster = {
-            cluster_number: cluster_label(
-                studs.loc[model.labels_ == cluster_number, "Title"]
-            )
-            for cluster_number in range(clusters)
-        }
+
+        order_centroids = model.cluster_centers_.argsort()[:, ::-1]
+        terms = vectorizer.get_feature_names_out()
+        label_by_cluster = {}
+        for cluster_number in range(clusters):
+            top_terms = [terms[ind] for ind in order_centroids[cluster_number,]]
+            junk_words = ['cells', 'cell', 'patient', 'patients', 'participant', 'participants',
+                           'years', 'placebo', 'group', 'chief', 'outcomes', 'human', 'humans']
+            top_terms = [
+                x for x in top_terms
+                if x not in junk_words
+                and not re.search(r"\d", x)
+                and not x.isdigit()
+            ]
+
+            cluster_name = " ".join(top_terms[:4])
+            label_by_cluster[cluster_number] = cluster_name
+
+
         for cluster_number in range(clusters):
             base_label = label_by_cluster[cluster_number]
             label = base_label

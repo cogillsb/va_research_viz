@@ -32,11 +32,18 @@ def _fractional_year(dates: pd.Series) -> pd.Series:
     return d.dt.year + (d.dt.dayofyear - 1) / 365.25
 
 
-def cluster_label(titles, n_words: int = 2) -> str:
-    """Cheap cluster name: the most frequent non-stopwords in the titles."""
-    words = re.findall(r"[a-z][a-z\-]{3,}", " ".join(map(str, titles)).lower())
-    counts = Counter(w for w in words if w not in _STOPWORDS)
-    return " ".join(w for w, _ in counts.most_common(n_words)) or "misc"
+def cluster_label(titles, n_words: int = 3) -> str:
+    """Return the most frequent non-stopword trigram in the titles."""
+    words = re.findall(r"[a-z]+(?:-[a-z]+)*", " ".join(map(str, titles)).lower())
+    filtered = [w for w in words if w not in _STOPWORDS and len(w) > 1]
+
+    if len(filtered) >= 3:
+        trigrams = [" ".join(filtered[i : i + 3]) for i in range(len(filtered) - 2)]
+        counts = Counter(trigrams)
+        return counts.most_common(1)[0][0] if counts else "misc"
+
+    counts = Counter(filtered)
+    return " ".join(w for w, _ in counts.most_common(max(1, n_words))) or "misc"
 
 
 def _arc(ax, p0, p1, color, alpha, lw, bulge):
@@ -216,7 +223,7 @@ def plot_cluster_timeline(
                 },
                 hovertemplate=(
                     "<b>Cluster %{customdata[0]}</b><br>"
-                    "Breakthrough cluster: %{customdata[1]}<br>"
+                    "Breakthrough: %{customdata[1]}<br>"
                     "Study type: %{customdata[2]}<br>"
                     "Studies: %{customdata[3]}<br>"
                     "Publication year range: %{customdata[4]}-%{customdata[5]}<br>"

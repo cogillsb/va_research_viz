@@ -1,99 +1,152 @@
 Source_cluster,Target_cluster,count
-brain s,cell human,2
-brain s,diabetes receptor,4
-brain s,gastric bypass,1
-brain s,insulin diabetes,1
-brain s,obesity mechanisms,5
-brain s,receptor agonists,3
-brain s,spinal cord,5
-cell human,brain s,2
-cell human,cholecystokinin cells,1
-cell human,diabetes insulin,1
-cell human,insulin secretion,5
-cell human,receptor glucagon-like,9
-cells metaplasia,cell human,1
-cells metaplasia,gastric bypass,1
-cells metaplasia,obesity mechanisms,2
-cells metaplasia,spinal cord,7
-cholecystokinin cells,cell human,3
-cholecystokinin cells,diabetes receptor,2
-cholecystokinin cells,obesity mechanisms,4
-cholecystokinin cells,spinal cord,2
-diabetes cardiovascular,diabetes type,1
-diabetes cardiovascular,heart failure,1
-diabetes cardiovascular,receptor glucagon-like,1
-diabetes cardiovascular,trial glycemia,2
-diabetes insulin,insulin diabetes,4
-diabetes insulin,obesity mechanisms,2
-diabetes receptor,brain s,1
-diabetes receptor,diabetes insulin,3
-diabetes receptor,receptor glucagon-like,5
-diabetes type,diabetes cardiovascular,15
-diabetes type,diabetes receptor,13
-diabetes type,glucagon-like peptide-1,2
-diabetes type,glucagon-like receptor,4
-diabetes type,insulin diabetes,2
-diabetes type,kidney disease,15
-gastric bypass,brain s,2
-gastric bypass,diabetes insulin,4
-gastric bypass,rats intake,2
-gastric bypass,receptor glucagon-like,2
-glucagon-like peptide-1,heart failure,1
-glucagon-like peptide-1,receptor glucagon-like,3
-glucagon-like peptide-1,trial adults,2
-glucagon-like peptide-1,trial glycemia,1
-glucagon-like receptor,diabetes insulin,1
-glucagon-like receptor,hepatic ghrelin,1
-glucagon-like receptor,receptor glucagon-like,2
-heart failure,diabetes cardiovascular,15
-heart failure,diabetes receptor,2
-heart failure,glucagon-like peptide-1,1
-heart failure,kidney disease,8
-heart failure,receptor glucagon-like,1
-hepatic ghrelin,insulin diabetes,2
-hepatic ghrelin,receptor agonists,8
-insulin diabetes,brain s,3
-insulin diabetes,diabetes insulin,12
-insulin diabetes,rats intake,3
-insulin diabetes,receptor glucagon-like,3
-insulin diabetes,trial glycemia,1
-insulin secretion,cell human,1
-insulin secretion,diabetes insulin,2
-obesity mechanisms,diabetes insulin,1
-obesity mechanisms,hepatic ghrelin,2
-obesity mechanisms,insulin secretion,1
-obesity mechanisms,rats intake,5
-obesity mechanisms,receptor glucagon-like,2
-rats intake,cell human,1
-rats intake,diabetes insulin,1
-rats intake,diabetes receptor,1
-rats intake,receptor agonists,1
-receptor agonists,brain s,1
-receptor agonists,hepatic ghrelin,2
-receptor agonists,rats intake,1
-receptor agonists,receptor glucagon-like,1
-receptor glucagon-like,cell human,2
-receptor glucagon-like,diabetes receptor,9
-receptor glucagon-like,glucagon-like peptide-1,1
-receptor glucagon-like,glucagon-like receptor,2
-receptor glucagon-like,obesity mechanisms,8
-receptor glucagon-like,signaling role,1
-receptor glucagon-like,spinal cord,3
-signaling role,insulin secretion,2
-signaling role,rats intake,1
-signaling role,receptor glucagon-like,4
-spinal cord,brain s,4
-spinal cord,insulin secretion,1
-spinal cord,rats intake,1
-spinal cord,receptor glucagon-like,5
-spinal cord,trial adults,5
-spinal cord,trial glycemia,1
-trial adults,diabetes cardiovascular,2
-trial adults,gastric bypass,1
-trial adults,insulin diabetes,1
-trial adults,kidney disease,4
-trial adults,obesity mechanisms,2
-trial glycemia,diabetes cardiovascular,3
-trial glycemia,insulin diabetes,3
-trial glycemia,kidney disease,2
-trial glycemia,receptor agonists,1
+acid bile secretion gastric,brain diabetic insulin rats,1
+acid bile secretion gastric,glp luminal release duodenal,4
+acid bile secretion gastric,gut host intestinal microbiome,2
+acid bile secretion gastric,mice sup insulin neprilysin,1
+brain diabetic insulin rats,acid bile secretion gastric,1
+brain diabetic insulin rats,failure heart empagliflozin fraction,1
+brain diabetic insulin rats,ghrelin alcohol glp liver,2
+brain diabetic insulin rats,glp brain insulin endothelial,8
+brain diabetic insulin rats,insulin diabetes sglt risk,1
+brain diabetic insulin rats,insulin islets islet function,1
+brain diabetic insulin rats,insulin sensitivity glp postprandial,1
+brain diabetic insulin rats,weight loss gastric rygb,1
+cardiovascular trials cv diabetes,ckd diabetes kidney type,1
+cardiovascular trials cv diabetes,dulaglutide cardiovascular diabetes sub,1
+cardiovascular trials cv diabetes,failure heart empagliflozin fraction,2
+cardiovascular trials cv diabetes,glp luminal release duodenal,1
+cardiovascular trials cv diabetes,grade weight glycemia loss,2
+cardiovascular trials cv diabetes,insulin sensitivity glp postprandial,1
+ckd diabetes kidney type,cardiovascular trials cv diabetes,11
+ckd diabetes kidney type,ckd kidney disease guideline,17
+ckd diabetes kidney type,glp ra use risk,5
+ckd diabetes kidney type,insulin diabetes sglt risk,1
+ckd diabetes kidney type,insulin islets islet function,2
+ckd diabetes kidney type,kidney diabetic proximal tubule,6
+ckd diabetes kidney type,risk glp kidney diabetes,12
+ckd diabetes kidney type,treatment diabetes type pharmacologic,5
+ckd kidney disease guideline,grade weight glycemia loss,1
+ckd kidney disease guideline,proximal reabsorption akita glucose,2
+dulaglutide cardiovascular diabetes sub,cardiovascular trials cv diabetes,3
+dulaglutide cardiovascular diabetes sub,ckd kidney disease guideline,3
+dulaglutide cardiovascular diabetes sub,glp brain insulin endothelial,2
+dulaglutide cardiovascular diabetes sub,glp ra use risk,5
+dulaglutide cardiovascular diabetes sub,insulin diabetes sglt risk,3
+dulaglutide cardiovascular diabetes sub,obesity incretin liver glp,2
+dulaglutide cardiovascular diabetes sub,risk glp kidney diabetes,15
+dulaglutide cardiovascular diabetes sub,treatment diabetes type pharmacologic,3
+failure heart empagliflozin fraction,cardiovascular trials cv diabetes,12
+failure heart empagliflozin fraction,ckd kidney disease guideline,10
+failure heart empagliflozin fraction,glp brain insulin endothelial,1
+failure heart empagliflozin fraction,glp ra use risk,2
+failure heart empagliflozin fraction,heart cardiac failure hf,1
+failure heart empagliflozin fraction,insulin diabetes sglt risk,1
+failure heart empagliflozin fraction,kidney diabetic proximal tubule,3
+failure heart empagliflozin fraction,mice sup insulin neprilysin,1
+failure heart empagliflozin fraction,obesity incretin liver glp,3
+failure heart empagliflozin fraction,risk glp kidney diabetes,6
+failure heart empagliflozin fraction,treatment diabetes type pharmacologic,3
+food intake weight pyy,acid bile secretion gastric,1
+food intake weight pyy,ghrelin alcohol glp liver,1
+food intake weight pyy,glp brain insulin endothelial,2
+food intake weight pyy,grade weight glycemia loss,1
+food intake weight pyy,insulin islets islet function,1
+food intake weight pyy,obesity incretin liver glp,1
+food intake weight pyy,risk glp kidney diabetes,1
+ghrelin alcohol glp liver,brain diabetic insulin rats,1
+ghrelin alcohol glp liver,food intake weight pyy,6
+ghrelin alcohol glp liver,glp luminal release duodenal,2
+ghrelin alcohol glp liver,grade weight glycemia loss,1
+ghrelin alcohol glp liver,hepatic liver fatty ghrelin,3
+ghrelin alcohol glp liver,insulin sensitivity glp postprandial,1
+ghrelin alcohol glp liver,mice sup insulin neprilysin,2
+glp brain insulin endothelial,brain diabetic insulin rats,3
+glp brain insulin endothelial,failure heart empagliflozin fraction,2
+glp brain insulin endothelial,food intake weight pyy,3
+glp brain insulin endothelial,glp luminal release duodenal,1
+glp brain insulin endothelial,gut host intestinal microbiome,2
+glp brain insulin endothelial,insulin sensitivity glp postprandial,4
+glp brain insulin endothelial,mice sup insulin neprilysin,3
+glp luminal release duodenal,acid bile secretion gastric,3
+glp luminal release duodenal,ghrelin alcohol glp liver,4
+glp luminal release duodenal,glp brain insulin endothelial,3
+glp luminal release duodenal,risk glp kidney diabetes,1
+glp luminal release duodenal,weight loss gastric rygb,7
+grade weight glycemia loss,cardiovascular trials cv diabetes,1
+grade weight glycemia loss,ckd kidney disease guideline,1
+grade weight glycemia loss,obesity incretin liver glp,7
+grade weight glycemia loss,risk glp kidney diabetes,1
+gut host intestinal microbiome,glp brain insulin endothelial,3
+heart cardiac failure hf,failure heart empagliflozin fraction,4
+heart cardiac failure hf,grade weight glycemia loss,1
+heart cardiac failure hf,insulin sensitivity glp postprandial,1
+heart cardiac failure hf,liraglutide weight changes total,3
+heart cardiac failure hf,mice sup insulin neprilysin,3
+hepatic liver fatty ghrelin,acid bile secretion gastric,1
+hepatic liver fatty ghrelin,ghrelin alcohol glp liver,8
+hepatic liver fatty ghrelin,obesity incretin liver glp,2
+hepatic liver fatty ghrelin,weight loss gastric rygb,1
+insulin diabetes sglt risk,brain diabetic insulin rats,1
+insulin diabetes sglt risk,ckd diabetes kidney type,1
+insulin diabetes sglt risk,grade weight glycemia loss,2
+insulin diabetes sglt risk,insulin sensitivity glp postprandial,1
+insulin diabetes sglt risk,liraglutide weight changes total,1
+insulin diabetes sglt risk,mice sup insulin neprilysin,1
+insulin diabetes sglt risk,proximal reabsorption akita glucose,1
+insulin islets islet function,brain diabetic insulin rats,1
+insulin islets islet function,glp luminal release duodenal,2
+insulin islets islet function,gut host intestinal microbiome,1
+insulin islets islet function,insulin sensitivity glp postprandial,5
+insulin islets islet function,liraglutide weight changes total,1
+insulin islets islet function,mice sup insulin neprilysin,17
+insulin sensitivity glp postprandial,glp brain insulin endothelial,2
+insulin sensitivity glp postprandial,insulin diabetes sglt risk,1
+insulin sensitivity glp postprandial,obesity incretin liver glp,2
+insulin sensitivity glp postprandial,weight loss gastric rygb,1
+kidney diabetic proximal tubule,gut host intestinal microbiome,1
+kidney diabetic proximal tubule,hepatic liver fatty ghrelin,1
+kidney diabetic proximal tubule,insulin sensitivity glp postprandial,2
+kidney diabetic proximal tubule,liraglutide weight changes total,1
+kidney diabetic proximal tubule,mice sup insulin neprilysin,2
+kidney diabetic proximal tubule,proximal reabsorption akita glucose,11
+liraglutide weight changes total,obesity incretin liver glp,4
+liraglutide weight changes total,treatment diabetes type pharmacologic,1
+liraglutide weight changes total,weight loss gastric rygb,1
+mice sup insulin neprilysin,acid bile secretion gastric,4
+mice sup insulin neprilysin,glp brain insulin endothelial,4
+mice sup insulin neprilysin,insulin islets islet function,11
+mice sup insulin neprilysin,kidney diabetic proximal tubule,2
+mice sup insulin neprilysin,obesity incretin liver glp,7
+mice sup insulin neprilysin,weight loss gastric rygb,1
+obesity incretin liver glp,brain diabetic insulin rats,2
+obesity incretin liver glp,failure heart empagliflozin fraction,1
+obesity incretin liver glp,food intake weight pyy,2
+obesity incretin liver glp,gut host intestinal microbiome,1
+obesity incretin liver glp,insulin sensitivity glp postprandial,1
+obesity incretin liver glp,liraglutide weight changes total,4
+obesity incretin liver glp,mice sup insulin neprilysin,2
+parietal metaplasia gland sdf,acid bile secretion gastric,7
+parietal metaplasia gland sdf,glp brain insulin endothelial,1
+parietal metaplasia gland sdf,insulin islets islet function,3
+parietal metaplasia gland sdf,obesity incretin liver glp,1
+proximal reabsorption akita glucose,acid bile secretion gastric,1
+proximal reabsorption akita glucose,glp ra use risk,1
+proximal reabsorption akita glucose,kidney diabetic proximal tubule,36
+proximal reabsorption akita glucose,obesity incretin liver glp,3
+proximal reabsorption akita glucose,risk glp kidney diabetes,1
+proximal reabsorption akita glucose,treatment diabetes type pharmacologic,1
+risk glp kidney diabetes,glp luminal release duodenal,1
+risk glp kidney diabetes,grade weight glycemia loss,1
+risk glp kidney diabetes,mice sup insulin neprilysin,1
+risk glp kidney diabetes,proximal reabsorption akita glucose,2
+treatment diabetes type pharmacologic,brain diabetic insulin rats,2
+treatment diabetes type pharmacologic,grade weight glycemia loss,1
+treatment diabetes type pharmacologic,liraglutide weight changes total,1
+weight loss gastric rygb,brain diabetic insulin rats,1
+weight loss gastric rygb,food intake weight pyy,6
+weight loss gastric rygb,glp luminal release duodenal,1
+weight loss gastric rygb,grade weight glycemia loss,2
+weight loss gastric rygb,gut host intestinal microbiome,1
+weight loss gastric rygb,insulin sensitivity glp postprandial,1
+weight loss gastric rygb,liraglutide weight changes total,1
+weight loss gastric rygb,mice sup insulin neprilysin,3

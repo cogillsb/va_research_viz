@@ -20,8 +20,9 @@ def elicit_search(term: str, poll_seconds: int = 5, timeout: int = 1800) -> str:
     research_question = f"""
     Give me 10 brief numbered sentences of broad breakthroughs for {term} research,
     development, and bringing to market for Department of Veterans Affairs associated
-     work. Use review articles. Make the sentences brief and do not refer to the
-    VA directly. Be broad with inception to current day including early research.
+    work. Use review articles. Make the sentences brief and do not refer to the
+    VA directly. Be broad with inception to current day including early research. 
+    Do not state the year the breakthrough happened. 
     """
    
 
