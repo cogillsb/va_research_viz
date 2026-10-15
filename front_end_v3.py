@@ -235,7 +235,7 @@ def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
         heading("VA Research Timeline by Cluster")
         white_text(
             "Each lane is a breakthrough on the development cycle. Points show individual study clusters, "
-            "colours identify study types, and arcs show citations between clusters."
+            "colors identify study types, and arcs show citations between clusters."
         )
 
         first_agg = studies.groupby('Cluster')['Years'].median().reset_index(name='median_col')   
