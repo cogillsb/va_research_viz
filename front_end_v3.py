@@ -18,7 +18,7 @@ from graph_layout import BIN_STYLE, build_graph
 from network_build import build_network
 from plots import plot_cluster_timeline, plot_landmark_timeline
 
-DEBUG_DUMP_CSV = False  # write the dataframes returned by build_network to disk
+DEBUG_DUMP_CSV = True  # write the dataframes returned by build_network to disk
 DATA_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
@@ -47,6 +47,10 @@ st.markdown(
 [data-testid="stExpander"] summary svg { color: #ffffff !important; }
 
 .stMarkdown ul li, .stMarkdown ul li::marker { color: white !important; }
+.st-key-cluster_timeline_years [data-testid="stSlider"] * { color: #ffffff !important; }
+.st-key-cluster_timeline_years [data-testid="stSlider"] [role="slider"] {
+    background-color: #ffffff !important;
+}
 </style>
 """,
     unsafe_allow_html=True,
@@ -177,19 +181,6 @@ if submitted and search_query.strip():
         )
     st.rerun()  # so the header stats above reflect the new results
 
-def render_landmark_timelines(studies) -> None:
-    with st.expander("Landmark article timelines", expanded=True):
-        for bin_name in studies["Bin"].unique():
-            df_bin = studies[(studies["Bin"] == bin_name) & (studies["Degree"] == 1)]
-            df_top = df_bin.head(10).sort_values("Date")
-
-            heading(f"{bin_name.capitalize()} Landmark VA Articles Timeline")
-            show_figure(plot_landmark_timeline(df_top))
-
-            heading("Key Findings", 2)
-            findings = df_top.sort_values(by ="Strength", ascending=False)["Abstract"].dropna()
-            findings = [x.strip() for x in findings]
-            st.markdown("\n".join(f"* {f}" for f in findings))
 
 # ── Sections ─────────────────────────────────────────────────────────────────
 def render_landmark_timelines(studies) -> None:
@@ -240,15 +231,34 @@ def render_landmark_timelines(studies) -> None:
 
 
 def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
-    with st.expander("VA research timeline by cluster", expanded=True):
+    with st.expander("VA research timeline by cluster", expanded=True):        
         heading("VA Research Timeline by Cluster")
         white_text(
             "Each lane is a breakthrough on the development cycle. Points show individual study clusters, "
             "colours identify study types, and arcs show citations between clusters."
         )
+
+        first_agg = studies.groupby('Cluster')['Years'].median().reset_index(name='median_col')   
+
+        
+        # Select a range of float values
+        values = st.slider(
+            label="Select a range of Years:",
+            min_value=int(studies.Years.min())-1,
+             max_value= int(studies.Years.max()) + 1 ,
+             value= (int(first_agg['median_col'].min()), int(first_agg['median_col'].max())),
+             step= 1,
+             key="cluster_timeline_years",
+        )
+
+        rng_studies = studies[studies.Years.between(values[0], values[1])] 
+        rng_clusters = list(rng_studies.Cluster.unique())
+        rng_edges = df_edges[(df_edges.Source_cluster.isin(rng_clusters))&(df_edges.Target_cluster.isin(rng_clusters))]
         show_figure(
             plot_cluster_timeline(
-                studies, df_edges, selected_cluster=clicked_node
+                rng_studies,
+                rng_edges,
+                selected_cluster=clicked_node
             )
         )
 

@@ -46,87 +46,15 @@ def cluster_label(titles, n_words: int = 3) -> str:
     return " ".join(w for w, _ in counts.most_common(max(1, n_words))) or "misc"
 
 
-def _arc(ax, p0, p1, color, alpha, lw, bulge):
-    """Quadratic-bezier arc between two points, bowed toward earlier years."""
-    ctrl = ((p0[0] + p1[0]) / 2 - bulge, (p0[1] + p1[1]) / 2)
-    path = Path([p0, ctrl, p1], [Path.MOVETO, Path.CURVE3, Path.CURVE3])
-    ax.add_patch(
-        PathPatch(path, fc="none", ec=color, alpha=alpha, lw=lw, zorder=1)
-    )
-
-
 # ── cluster timeline (CiteSpace-style) ───────────────────────────────────────
 def plot_cluster_timeline(
     df_studies: pd.DataFrame,
-    df_edges: pd.DataFrame | None = None,
-    *,
-    max_clusters: int = 10,
-    max_links: int = 40,
+    df_edges: pd.DataFrame,
     selected_cluster: str | None = None,
 ):
     """Plot one lane per breakthrough cluster and points for study clusters.
-
-    Expects df_studies columns: BreakthruCluster, Cluster, Bin, and Date.
-    Title is optional and used for lane labels. df_edges should contain
-    Source_cluster, Target_cluster, and count.
     Returns a Figure, or None if there is nothing to draw.
     """
-    df = df_studies.copy()
-    required = {"BreakthruCluster", "Cluster", "Bin", "Date"}
-    missing = required.difference(df.columns)
-    if missing:
-        raise KeyError(f"Missing timeline columns: {sorted(missing)}")
-    df = df.dropna(subset=["BreakthruCluster", "Cluster", "Bin"])
-    df["BreakthruCluster"] = (
-        df["BreakthruCluster"]
-        .astype(str)
-        .str.replace(r"(?is)<citations>.*?(?:<citations/>|</citations>)", "", regex=True)
-        .str.replace(r"\s+", " ", regex=True)
-        .str.strip()
-    )
-    df["Cluster"] = df["Cluster"].astype(str)
-    df["Bin"] = df["Bin"].astype(str).str.lower()
-    df["t"] = _fractional_year(df["Date"])
-    df = df.dropna(subset=["t"])
-    if df.empty:
-        return None
-
-    # Largest breakthrough clusters first (top lane = biggest lane).
-    breakthrough_clusters = list(
-        df["BreakthruCluster"].value_counts().index[:max_clusters]
-    )
-    df = df[df["BreakthruCluster"].isin(breakthrough_clusters)]
-    lane_gap = 2.0
-    lane = {
-        cluster: (len(breakthrough_clusters) - 1 - i) * lane_gap
-        for i, cluster in enumerate(breakthrough_clusters)
-    }
-    df["year"] = np.floor(df["t"]).astype(int)
-
-    point_clusters = (
-        df.groupby(["BreakthruCluster", "Cluster"], sort=False)["Bin"]
-        .first()
-        .reset_index()
-    )
-    point_clusters["y"] = point_clusters["BreakthruCluster"].map(lane)
-    cluster_y = point_clusters.set_index("Cluster")["y"].to_dict()
-
-    per = (
-        df.groupby(["BreakthruCluster", "Cluster", "Bin"], sort=False)
-        .agg(
-            t=("t", "median"),
-            n=("t", "size"),
-            first_year=("year", "min"),
-            last_year=("year", "max"),
-        )
-        .reset_index()
-    )
-    per["year"] = np.floor(per["t"]).astype(int)
-    per["y"] = per["Cluster"].map(cluster_y)
-
-    y_min = int(np.floor(per["t"].min()))
-    y_max = int(np.ceil(per["t"].max()))
-    span = max(y_max - y_min, 1)
     bin_colors = {
         "clinical": "#177a5e",
         "human": "#1d6fa4",
@@ -134,53 +62,70 @@ def plot_cluster_timeline(
     }
     default_color = "#64748b"
 
+
+    # Building the dataset
+    df = df_studies.copy()
+    df["BreakthruCluster"] = df["BreakthruCluster"].astype(str).str.replace(r"(?is)<citations>.*?(?:<citations/>|</citations>)", "", regex=True)
+    df["Cluster"] = df["Cluster"].astype(str)
+    df["Bin"] = df["Bin"].astype(str).str.lower()
+    df["t"] = _fractional_year(df["Date"])
+
+    # Largest breakthrough clusters first (top lane = biggest lane).
+    breakthrough_clusters = df["BreakthruCluster"].value_counts().index.to_list()
+    lane = {cluster: (len(breakthrough_clusters) - 1 - i) * 2 for i, cluster in enumerate(breakthrough_clusters)}
+    
+    point_clusters = (df.groupby(["BreakthruCluster", "Cluster", "Bin"], sort=False)
+                    .agg(
+                            t=("t", "median"),
+                            n=("t", "size"),
+                            first_year=("Years", "min"),
+                            last_year=("Years", "max"),
+                        ) 
+                      .reset_index())   
+    point_clusters["y"] = point_clusters["BreakthruCluster"].map(lane)
+    cluster_y = point_clusters.set_index("Cluster")["y"].to_dict()
+
+    
     fig = go.Figure()
 
-    # Citation edges between study clusters, anchored at their median dates.
-    if df_edges is not None and len(df_edges):
-        anchors = df.groupby("Cluster")["t"].median()
-        e = df_edges.copy()
-        e["Source_cluster"] = e["Source_cluster"].astype(str)
-        e["Target_cluster"] = e["Target_cluster"].astype(str)
-        e = e[
-            e["Source_cluster"].isin(cluster_y)
-            & e["Target_cluster"].isin(cluster_y)
-            & (e["Source_cluster"] != e["Target_cluster"])
-        ].nlargest(max_links, "count")
-        cmax = e["count"].max() if len(e) else 1
-        for edge_index, (_, r) in enumerate(e.iterrows()):
-            s, t = r["Source_cluster"], r["Target_cluster"]
-            start_x, end_x = anchors[s], anchors[t]
-            start_y, end_y = cluster_y[s], cluster_y[t]
-            curve_t = np.linspace(0, 1, 25)
-            control_x = (start_x + end_x) / 2
-            control_y = (
-                (start_y + end_y) / 2
-                + (0.35 * lane_gap if edge_index % 2 == 0 else -0.35 * lane_gap)
+   # Citation edges between study clusters, anchored at their median dates.
+    anchors = df.groupby("Cluster")["t"].median()
+
+    e = df_edges.nlargest(int(len(df_edges) * .3), "count")
+
+    for edge_index, r in e.iterrows():
+        s, t = r["Source_cluster"], r["Target_cluster"]
+        start_x, end_x = anchors[s], anchors[t]
+        start_y, end_y = cluster_y[s], cluster_y[t]
+        curve_t = np.linspace(0, 1, 25)
+        control_x = (start_x + end_x) / 2
+        control_y = (
+            (start_y + end_y) / 2
+            + (0.35 * 2 if edge_index % 2 == 0 else -0.35 * 2)
+        )
+        curve_x = (
+            (1 - curve_t) ** 2 * start_x
+            + 2 * (1 - curve_t) * curve_t * control_x
+            + curve_t ** 2 * end_x
+        )
+        curve_y = (
+            (1 - curve_t) ** 2 * start_y
+            + 2 * (1 - curve_t) * curve_t * control_y
+            + curve_t ** 2 * end_y
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=curve_x,
+                y=curve_y,
+                mode="lines",
+                line={
+                    "color": "rgba(71, 85, 105, 0.45)",
+                    "width": 1 + 4 * r["count"] /  e["count"].max(),
+                },
+                hoverinfo="skip",
+                showlegend=False,
             )
-            curve_x = (
-                (1 - curve_t) ** 2 * start_x
-                + 2 * (1 - curve_t) * curve_t * control_x
-                + curve_t ** 2 * end_x
-            )
-            curve_y = (
-                (1 - curve_t) ** 2 * start_y
-                + 2 * (1 - curve_t) * curve_t * control_y
-                + curve_t ** 2 * end_y
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=curve_x,
-                    y=curve_y,
-                    mode="lines",
-                    line={
-                        "color": "rgba(71, 85, 105, 0.45)",
-                        "width": 1 + 4 * r["count"] / cmax,
-                    },
-                    hoverinfo="skip",
-                    showlegend=False,
-                )
-            )
+        )
 
     # Breakthrough-cluster lanes sit behind the point-level study clusters.
     for breakthrough_cluster in breakthrough_clusters:
@@ -194,62 +139,60 @@ def plot_cluster_timeline(
                 hoverinfo="skip",
                 showlegend=False,
             )
-        )
-
-    # One hoverable point per study cluster, coloured by study bin.
+        )   
     for bin_name in ("clinical", "human", "animal"):
-        points = per[per["Bin"] == bin_name]
-        if points.empty:
-            continue
-        customdata = points[
-            ["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]
-        ].to_numpy()
+        points = point_clusters[point_clusters["Bin"] == bin_name]
+        customdata = points[["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]].to_numpy()
         fig.add_trace(
-            go.Scatter(
-                x=points["t"],
-                y=points["y"],
-                mode="markers",
-                name=bin_name.capitalize(),
-                marker={
-                    "size": 12 + 22 * (points["n"] / per["n"].max()) ** 0.9,
-                    "color": bin_colors.get(bin_name, default_color),
-                    "line": {"color": "white", "width": 1},
-                    "opacity": 0.85,
-                },
-                customdata=customdata,
-                hoverlabel={
-                    "align": "left",
-                    "showarrow": True,
-                },
-                hovertemplate=(
-                    "<b>Cluster %{customdata[0]}</b><br>"
-                    "Breakthrough: %{customdata[1]}<br>"
-                    "Study type: %{customdata[2]}<br>"
-                    "Studies: %{customdata[3]}<br>"
-                    "Publication year range: %{customdata[4]}-%{customdata[5]}<br>"
-                    "Median publication year: %{x:.0f}<extra></extra>"
-                ),
-            )
-        )
+                go.Scatter(
+                    x=points["t"],
+                    y=points["y"],
+                    mode="markers",
+                    name=bin_name.capitalize(),
+                    marker={
+                        "size": 12 + 22 * (points["n"] / point_clusters["n"].max()) ** 0.9,
+                        "color": bin_colors.get(bin_name, default_color),
+                        "line": {"color": "white", "width": 1},
+                        "opacity": 0.85,
+                    },
+                    customdata=customdata,
+                    hoverlabel={
+                        "align": "left",
+                        "showarrow": True,
+                    },
+                    hovertemplate=(
+                        "<b>Cluster %{customdata[0]}</b><br>"
+                        "Breakthrough: %{customdata[1]}<br>"
+                        "Study type: %{customdata[2]}<br>"
+                        "Studies: %{customdata[3]}<br>"
+                        "Publication year range: %{customdata[4]}-%{customdata[5]}<br>"
+                        "Median publication year: %{x:.0f}<extra></extra>"
+                    ),
+                )
+            )   
 
     if selected_cluster is not None:
-        selected_points = per[per["Cluster"] == str(selected_cluster)]
-        if not selected_points.empty:
-            fig.add_trace(
-                go.Scatter(
-                    x=selected_points["t"],
-                    y=selected_points["y"],
-                    mode="markers",
-                    marker={
-                        "symbol": "circle-open",
-                        "size": 42,
-                        "color": "#facc15",
-                        "line": {"color": "#facc15", "width": 3},
-                    },
-                    hoverinfo="skip",
-                    showlegend=False,
-                )
+        selected_points = point_clusters[point_clusters["Cluster"] == str(selected_cluster)]
+        fig.add_trace(
+            go.Scatter(
+                x=selected_points["t"],
+                y=selected_points["y"],
+                mode="markers",
+                marker={
+                    "symbol": "circle-open",
+                    "size": 42,
+                    "color": "#facc15",
+                    "line": {"color": "#facc15", "width": 3},
+                },
+                hoverinfo="skip",
+                showlegend=False,
             )
+        ) 
+
+ 
+    y_min = int(np.floor(point_clusters["t"].min()))
+    y_max = int(np.ceil(point_clusters["t"].max()))
+    span = max(y_max - y_min, 1)
 
     # Years run along the top; breakthrough-cluster lanes run horizontally.
     step = max(1, int(round(span / 8)))
@@ -283,7 +226,7 @@ def plot_cluster_timeline(
                 f"# {textwrap.fill(c, width=44, subsequent_indent='  ').replace(chr(10), '<br>')}"
                 for c in breakthrough_clusters
             ],
-            "range": [-1, (len(breakthrough_clusters) - 1) * lane_gap + 1],
+            "range": [-1, (len(breakthrough_clusters) - 1) * 2 + 1],
             "showgrid": False,
             "zeroline": False,
             "side": "right",
