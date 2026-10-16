@@ -6,7 +6,7 @@ import html
 import re
 from pathlib import Path
 from urllib.parse import quote
-
+from network_build import assign_super_clusters
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.graph_objects as go
@@ -18,7 +18,7 @@ from graph_layout import BIN_STYLE, build_graph
 from network_build import build_network
 from plots import plot_cluster_timeline, plot_landmark_timeline
 
-DEBUG_DUMP_CSV = True  # write the dataframes returned by build_network to disk
+DEBUG_DUMP_CSV = False  # write the dataframes returned by build_network to disk
 DATA_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
@@ -43,10 +43,14 @@ st.markdown(
 
 [data-testid="stExpander"] { background: #161b27; border: 1px solid #252d3d; }
 [data-testid="stExpander"] summary,
-[data-testid="stExpander"] summary p { color: #ffffff !important; }
-[data-testid="stExpander"] summary svg { color: #ffffff !important; }
+[data-testid="stExpander"] summary p { color: #000000 !important; }
+[data-testid="stExpander"] summary svg { color: #000000 !important; }
+[data-testid="stExpander"] summary:hover,
+[data-testid="stExpander"] summary:hover p,
+[data-testid="stExpander"] summary:hover svg { color: #ffffff !important; }
 
 .stMarkdown ul li, .stMarkdown ul li::marker { color: white !important; }
+button:hover, button:hover * { color: #ffffff !important; }
 .st-key-cluster_timeline_years [data-testid="stSlider"] * { color: #ffffff !important; }
 .st-key-cluster_timeline_years [data-testid="stSlider"] [role="slider"] {
     background-color: #ffffff !important;
@@ -91,6 +95,7 @@ STATE_DEFAULTS = {
     "authors": [],
     "term": "",
     "masked_nodes": set(),
+    "breakthrough_descriptions": []
 }
 for key, default in STATE_DEFAULTS.items():
     st.session_state.setdefault(key, default)
@@ -109,13 +114,20 @@ def _load_search_data(query: str, _progress_callback=None):
             if authors_path.exists()
             else []
         )
-        return df_studies, df_network, df_edges, df_nodes, authors
+        breakthrough_descriptions_path = DATA_DIR / "test_df_breakthrough_descriptions.csv"
+        breakthrough_descriptions = (
+            pd.read_csv(breakthrough_descriptions_path)["Breakthrough_Description"].dropna().astype(str).tolist()
+            if breakthrough_descriptions_path.exists()
+            else []
+        )
+
+        return df_studies, df_network, df_edges, df_nodes, authors, breakthrough_descriptions
 
     return build_network(query, progress_callback=_progress_callback)
 
 
 def run_search(query: str, progress_callback=None) -> None:
-    df_studies, df_network, df_edges, df_nodes, authors = _load_search_data(
+    df_studies, df_network, df_edges, df_nodes, authors, breakthrough_descriptions = _load_search_data(
         query, _progress_callback=progress_callback
     )
     
@@ -129,6 +141,10 @@ def run_search(query: str, progress_callback=None) -> None:
             DATA_DIR / "test_df_authors.csv", index=False
         )
 
+        pd.Series(breakthrough_descriptions, name="Breakthrough_Description").to_csv(
+            DATA_DIR / "test_df_breakthrough_descriptions.csv", index=False
+        )
+
     if progress_callback is not None:
         progress_callback("Step 7 of 7: Assembling the interactive cluster graph.")
     nodes, edges, config = build_graph(df_nodes, df_edges)
@@ -139,6 +155,7 @@ def run_search(query: str, progress_callback=None) -> None:
         edges=edges,
         graph_config=config,
         authors=authors,
+        breakthrough_descriptions=breakthrough_descriptions,
         term=query,
     )
 
@@ -235,9 +252,9 @@ def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
         heading("VA Research Timeline by Cluster")
         white_text(
             "Each lane is a breakthrough on the development cycle. Points show individual study clusters, "
-            "colors identify study types, and arcs show citations between clusters."
+            "colours identify study types, and arcs show citations between clusters."
         )
-
+        studies['Years'] = studies['Years'].astype(int)
         first_agg = studies.groupby('Cluster')['Years'].median().reset_index(name='median_col')   
 
         
@@ -246,12 +263,19 @@ def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
             label="Select a range of Years:",
             min_value=int(studies.Years.min())-1,
              max_value= int(studies.Years.max()) + 1 ,
-             value= (int(first_agg['median_col'].min()), int(first_agg['median_col'].max())),
+             value= (int(studies.Years.min())-1, int(studies.Years.max()) + 1),
              step= 1,
              key="cluster_timeline_years",
         )
 
+        #Filter for selected timeline range
         rng_studies = studies[studies.Years.between(values[0], values[1])] 
+
+        
+
+        #Reassign the clusters
+        rng_studies['BreakthruCluster'] = assign_super_clusters(rng_studies, st.session_state['breakthrough_descriptions'])
+
         rng_clusters = list(rng_studies.Cluster.unique())
         rng_edges = df_edges[(df_edges.Source_cluster.isin(rng_clusters))&(df_edges.Target_cluster.isin(rng_clusters))]
         show_figure(

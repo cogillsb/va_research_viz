@@ -1,29 +1,29 @@
 Bin,Cluster,BreakthruCluster,count
-animal,brain diabetic insulin rats,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,22
-animal,food intake weight pyy,Demonstrating substantial weight-loss benefits supported approved glp-1-based treatments for obesity. <citations>ywe7jw7g:3</citations>,25
-animal,glp luminal release duodenal,Identifying active glp-1 linked gut hormone biology to insulin release and glucagon suppression. <citations>yc3fpybw:2</citations>,16
-animal,gut host intestinal microbiome,Identifying active glp-1 linked gut hormone biology to insulin release and glucagon suppression. <citations>yc3fpybw:2</citations>,8
-animal,hepatic liver fatty ghrelin,Identifying active glp-1 linked gut hormone biology to insulin release and glucagon suppression. <citations>yc3fpybw:2</citations>,12
-animal,mice sup insulin neprilysin,Identifying active glp-1 linked gut hormone biology to insulin release and glucagon suppression. <citations>yc3fpybw:2</citations>,45
-animal,parietal metaplasia gland sdf,Identifying active glp-1 linked gut hormone biology to insulin release and glucagon suppression. <citations>yc3fpybw:2</citations>,10
-animal,proximal reabsorption akita glucose,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,10
-clinical,ckd diabetes kidney type,Cardiovascular outcome research established protection against major cardiovascular events with effective glp-1 therapies. <citations>ywe7jw7g:1</citations>,15
-clinical,dulaglutide cardiovascular diabetes sub,Cardiovascular outcome research established protection against major cardiovascular events with effective glp-1 therapies. <citations>ywe7jw7g:1</citations>,13
-clinical,failure heart empagliflozin fraction,Cardiovascular outcome research established protection against major cardiovascular events with effective glp-1 therapies. <citations>ywe7jw7g:1</citations>,17
-clinical,grade weight glycemia loss,Demonstrating substantial weight-loss benefits supported approved glp-1-based treatments for obesity. <citations>ywe7jw7g:3</citations>,20
-clinical,insulin sensitivity glp postprandial,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,16
-clinical,liraglutide weight changes total,Demonstrating substantial weight-loss benefits supported approved glp-1-based treatments for obesity. <citations>ywe7jw7g:3</citations>,14
-human,acid bile secretion gastric,Kidney outcome research demonstrated slower kidney-function decline with glp-1 receptor agonists. <citations>ywe7jw7g:2</citations>,13
-human,cardiovascular trials cv diabetes,Cardiovascular outcome research established protection against major cardiovascular events with effective glp-1 therapies. <citations>ywe7jw7g:1</citations>,25
-human,ckd kidney disease guideline,Kidney outcome research demonstrated slower kidney-function decline with glp-1 receptor agonists. <citations>ywe7jw7g:2</citations>,21
-human,ghrelin alcohol glp liver,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,20
-human,glp brain insulin endothelial,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,32
-human,glp ra use risk,"Developing exenatide established the first glp-1 receptor agonist diabetes therapy. <citations>vlai5_og:1,3</citations>",49
-human,heart cardiac failure hf,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,14
-human,insulin diabetes sglt risk,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,29
-human,insulin islets islet function,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,33
-human,kidney diabetic proximal tubule,Kidney outcome research demonstrated slower kidney-function decline with glp-1 receptor agonists. <citations>ywe7jw7g:2</citations>,20
-human,obesity incretin liver glp,Demonstrating substantial weight-loss benefits supported approved glp-1-based treatments for obesity. <citations>ywe7jw7g:3</citations>,60
-human,risk glp kidney diabetes,Kidney outcome research demonstrated slower kidney-function decline with glp-1 receptor agonists. <citations>ywe7jw7g:2</citations>,50
-human,treatment diabetes type pharmacologic,Early human studies established glp-1’s glucose-lowering potential in type 2 diabetes. <citations>yc3fpybw:4</citations>,21
-human,weight loss gastric rygb,Demonstrating substantial weight-loss benefits supported approved glp-1-based treatments for obesity. <citations>ywe7jw7g:3</citations>,32
+animal,cck sup mice insulin,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,23
+animal,ghrh mr bone sdf,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,19
+animal,glp neprilysin sup mice,"Exenatide became the first approved glp-1 receptor agonist, translating incretin research into diabetes treatment. <citations>de8wmlxw:7</citations>",22
+animal,glucose akita reabsorption proximal,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,9
+animal,hepatic insulin liver ghrelin,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,22
+animal,intestinal luminal glp acid,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,32
+animal,pyy food intake pmol,Understanding glp-1 degradation enabled dpp-4 inhibitors and longer-lasting glp-1 medicines. <citations>pg265-fa:5</citations>,11
+animal,weight vagal rats body,Dual- and triple-receptor agonists broadened glp-1–based development toward greater weight loss and metabolic benefit. <citations>sfjk3u6g:8</citations>,11
+clinical,ckd diabetes kidney cardiovascular,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,12
+clinical,dulaglutide cardiovascular disease diabetes,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,15
+clinical,failure heart empagliflozin fraction,Appetite and weight-loss benefits expanded glp-1 medicines into approved obesity treatment. <citations>ya7v3tra:8</citations>,18
+clinical,grade glycemia diabetes reduction,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,18
+clinical,insulin sensitivity glp postprandial,"Exenatide became the first approved glp-1 receptor agonist, translating incretin research into diabetes treatment. <citations>de8wmlxw:7</citations>",15
+clinical,weight liraglutide loss changes,Appetite and weight-loss benefits expanded glp-1 medicines into approved obesity treatment. <citations>ya7v3tra:8</citations>,18
+human,acid gastric secretion ghrelin,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,17
+human,brain insulin bbb ad,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,22
+human,cardiovascular diabetes risk cv,"Outcomes trials established cardiovascular and kidney benefits for selected glp-1 therapies and patient populations. <citations>6odgfy7q:10,12,15-16</citations>",43
+human,glp motility gastrointestinal effects,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,26
+human,inflammatory islets il exendin,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,27
+human,insulin incretin diabetes type,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,61
+human,kidney ckd disease cardiovascular,"Outcomes trials established cardiovascular and kidney benefits for selected glp-1 therapies and patient populations. <citations>6odgfy7q:10,12,15-16</citations>",28
+human,kidney proximal diabetic tubule,Early incretin research showed that oral glucose stimulates more insulin release than intravenous glucose. <citations>bbhfiucw:3</citations>,17
+human,liver glp nafld disease,Dual- and triple-receptor agonists broadened glp-1–based development toward greater weight loss and metabolic benefit. <citations>sfjk3u6g:8</citations>,33
+human,obesity glp agonists effective,Appetite and weight-loss benefits expanded glp-1 medicines into approved obesity treatment. <citations>ya7v3tra:8</citations>,22
+human,ra use glp risk,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,38
+human,risk diabetes type glp,Human studies established that glp-1 could lower blood glucose in people with type 2 diabetes. <citations>pg265-fa:4</citations>,40
+human,transporter promising sodium glucose,"Exenatide became the first approved glp-1 receptor agonist, translating incretin research into diabetes treatment. <citations>de8wmlxw:7</citations>",11
+human,weight loss obesity muscle,Appetite and weight-loss benefits expanded glp-1 medicines into approved obesity treatment. <citations>ya7v3tra:8</citations>,36

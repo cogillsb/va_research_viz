@@ -1,28 +1,14 @@
 
 from __future__ import annotations
-
-import re
 import textwrap
-from collections import Counter
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-from matplotlib.patches import FancyArrowPatch, Patch, PathPatch
-from matplotlib.path import Path
+from matplotlib.patches import FancyArrowPatch
+
 
 YEAR_TICK_COLOR = "#c026d3"
-
-_STOPWORDS = set(
-    """
-    a about after all also among an and are as at based between but by can
-    during effect effects for from has have in into is it its of on or over
-    study studies patients patient veterans veteran using use used versus
-    that the their these this through to under with within after
-    trial trials clinical human animal analysis review randomized
-    """.split()
-)
 
 
 # ── helpers ──────────────────────────────────────────────────────────────────
@@ -31,19 +17,6 @@ def _fractional_year(dates: pd.Series) -> pd.Series:
     d = pd.to_datetime(dates, errors="coerce")
     return d.dt.year + (d.dt.dayofyear - 1) / 365.25
 
-
-def cluster_label(titles, n_words: int = 3) -> str:
-    """Return the most frequent non-stopword trigram in the titles."""
-    words = re.findall(r"[a-z]+(?:-[a-z]+)*", " ".join(map(str, titles)).lower())
-    filtered = [w for w in words if w not in _STOPWORDS and len(w) > 1]
-
-    if len(filtered) >= 3:
-        trigrams = [" ".join(filtered[i : i + 3]) for i in range(len(filtered) - 2)]
-        counts = Counter(trigrams)
-        return counts.most_common(1)[0][0] if counts else "misc"
-
-    counts = Counter(filtered)
-    return " ".join(w for w, _ in counts.most_common(max(1, n_words))) or "misc"
 
 
 # ── cluster timeline (CiteSpace-style) ───────────────────────────────────────
@@ -142,7 +115,14 @@ def plot_cluster_timeline(
         )   
     for bin_name in ("clinical", "human", "animal"):
         points = point_clusters[point_clusters["Bin"] == bin_name]
-        customdata = points[["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]].to_numpy()
+        customdata = points[
+            ["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]
+        ].astype(object).to_numpy()
+        for column in (0, 1):
+            customdata[:, column] = [
+                textwrap.fill(str(label), width=30).replace("\n", "<br>")
+                for label in customdata[:, column]
+            ]
         fig.add_trace(
                 go.Scatter(
                     x=points["t"],
