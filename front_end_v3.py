@@ -103,7 +103,7 @@ for key, default in STATE_DEFAULTS.items():
 
 @st.cache_data(ttl="1h", max_entries=32, show_spinner=False)
 def _load_search_data(query: str, _progress_callback=None):
-    if query.strip().casefold() == "test":
+    if query.strip().casefold() == "test" or query.strip().casefold() == "test glp-1":
         df_studies = pd.read_csv(DATA_DIR / "test_df_studies.csv")
         df_network = pd.read_csv(DATA_DIR / "test_df_network.csv")
         df_edges = pd.read_csv(DATA_DIR / "test_df_edges.csv")
