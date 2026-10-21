@@ -378,5 +378,5 @@ def build_network(term, progress_callback=None):
     df_studies['Strength'] = cites
     df_studies.sort_values(by='Strength', ascending=False, inplace=True)
     
-    return df_studies, df_network, df_edges, df_nodes, authors
+    return df_studies, df_network, df_edges, df_nodes, authors, breakthrough_descriptions
 
