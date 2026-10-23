@@ -43,8 +43,9 @@ def _node(row, bin_name: str, x: float, y: float) -> Node:
         color={
             "background": style["fill"],
             "border": style["border"],
-            "highlight": {"background": "#4a90d9", "border": "#82b8f0"},
+            "highlight": {"background": "#4a90d9", "border": "#82b8f0"},           
         },
+        opacity=0.5,
         group=bin_name,
         font=font,
     )
@@ -110,7 +111,7 @@ def build_graph(df_nodes: pd.DataFrame, df_edges: pd.DataFrame, top_edge_frac: f
                 target=target,
                 type="CURVE_SMOOTH",
                 width=count,
-                color={"color": "#252d3d", "highlight": "#4a90d9", "opacity": 0.8},
+                color={"color": "#252d3d", "highlight": "#4a90d9", "opacity": 0.1},
                 title=f"{source} → {target} · {count} citations",
             )
         )

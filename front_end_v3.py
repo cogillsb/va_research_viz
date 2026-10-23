@@ -1,7 +1,7 @@
 """Graph Explorer - Streamlit front end."""
 from __future__ import annotations
 
-from copy import copy
+import copy
 import html
 import re
 from pathlib import Path
@@ -18,7 +18,7 @@ from graph_layout import BIN_STYLE, build_graph
 from network_build import build_network
 from plots import plot_cluster_timeline, plot_landmark_timeline
 
-DEBUG_DUMP_CSV = False  # write the dataframes returned by build_network to disk
+DEBUG_DUMP_CSV = True  # write the dataframes returned by build_network to disk
 DATA_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
@@ -78,11 +78,11 @@ def show_figure(fig) -> None:
     if fig is None:
         st.info("Not enough dated studies to draw this figure.")
         return
-    if isinstance(fig, go.Figure):
-        st.plotly_chart(fig, width="stretch")
-        return
-    st.pyplot(fig)
-    plt.close(fig)
+    if isinstance(fig, go.FigureWidget):
+        st.plotly_chart(fig)
+    else:
+        st.pyplot(fig)
+        plt.close(fig)
 
 
 # ── State ────────────────────────────────────────────────────────────────────
@@ -94,16 +94,19 @@ STATE_DEFAULTS = {
     "graph_config": None,
     "authors": [],
     "term": "",
-    "masked_nodes": set(),
-    "breakthrough_descriptions": []
+    "breakthrough_descriptions": [],
+    "processing": False,
+    "clicked_node_id": None,
+    "masked_nodes": {}
 }
+
 for key, default in STATE_DEFAULTS.items():
     st.session_state.setdefault(key, default)
 
 
 @st.cache_data(ttl="1h", max_entries=32, show_spinner=False)
 def _load_search_data(query: str, _progress_callback=None):
-    if query.strip().casefold() == "test" or query.strip().casefold() == "test glp-1":
+    if query.strip().casefold() == "test":
         df_studies = pd.read_csv(DATA_DIR / "test_df_studies.csv")
         df_network = pd.read_csv(DATA_DIR / "test_df_network.csv")
         df_edges = pd.read_csv(DATA_DIR / "test_df_edges.csv")
@@ -155,34 +158,42 @@ def run_search(query: str, progress_callback=None) -> None:
         edges=edges,
         graph_config=config,
         authors=authors,
-        breakthrough_descriptions=breakthrough_descriptions,
-        term=query,
+        breakthrough_descriptions=breakthrough_descriptions
     )
 
 
 # ── Header + search ──────────────────────────────────────────────────────────
 has_results = st.session_state.studies is not None
-if has_results:
-    n_clusters = st.session_state.studies["Cluster"].nunique()
-    subtitle = f"{n_clusters} clusters · {len(st.session_state.nodes)} nodes · {len(st.session_state.edges)} edges"
-else:
-    subtitle = "search to begin"
 
-st.markdown(
-    f"""
-<div class="graph-header">
-  <p class="graph-title">⬡ Graph Explorer</p>
-  <span class="graph-subtitle">{subtitle}</span>
-</div>
-""",
-    unsafe_allow_html=True,
-)
+
+def start_process():
+    term = st.session_state.term.strip()
+    if not term:
+        return
+
+    st.session_state.update(
+        studies=None,
+        df_edges=None,
+        nodes=[],
+        edges=[],
+        graph_config=None,
+        authors=[],
+        breakthrough_descriptions=[],
+        masked_nodes={},
+        processing=True,
+    )
+        
 
 with st.form("search_form", border=False):  # form => pressing Enter also submits
-    search_query = st.text_input("Search", placeholder="Search for a treatment or drug.")
-    submitted = st.form_submit_button("Submit")
+    search_query = st.text_input("Search", placeholder="Search for a treatment or drug.", key="term")
+    submitted = st.form_submit_button("Submit",
+                                       disabled=st.session_state.processing,
+                                         on_click=start_process
+    )
 
-if submitted and search_query.strip():
+
+if st.session_state.processing:  
+
     with st.status(
         "Step 1 of 7: Searching PubMed for VA studies across three study types.",
         expanded=True,
@@ -195,9 +206,11 @@ if submitted and search_query.strip():
             label="Search complete. The study network is ready.",
             state="complete",
             expanded=False,
-        )
-    st.rerun()  # so the header stats above reflect the new results
+        ) 
+    st.session_state.processing = False  
 
+    st.rerun()
+    
 
 # ── Sections ─────────────────────────────────────────────────────────────────
 def render_landmark_timelines(studies) -> None:
@@ -247,17 +260,16 @@ def render_landmark_timelines(studies) -> None:
                     )
 
 
-def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
+def render_cluster_timelines(studies, df_edges) -> None:
+    clicked_node = st.session_state.clicked_node_id
     with st.expander("VA research timeline by cluster", expanded=True):        
         heading("VA Research Timeline by Cluster")
         white_text(
             "Each lane is a breakthrough on the development cycle. Points show individual study clusters, "
             "colours identify study types, and arcs show citations between clusters."
         )
-        studies['Years'] = studies['Years'].astype(int)
-        first_agg = studies.groupby('Cluster')['Years'].median().reset_index(name='median_col')   
+        studies['Years'] = studies['Years'].astype(int) 
 
-        
         # Select a range of float values
         values = st.slider(
             label="Select a range of Years:",
@@ -288,19 +300,36 @@ def render_cluster_timelines(studies, df_edges, clicked_node=None) -> None:
 
 
 def _connected_node_mask(clicked_node: str | None) -> set[str]:
-    if not clicked_node:
-        return set()
+    #connected = []
+    e = st.session_state.df_edges.copy()
+    e = e.nlargest(int(len(e) * .3), "count")
 
-    connected = {str(clicked_node)}
-    edges = st.session_state.get("df_edges")
-    if edges is not None and not edges.empty:
-        mask = edges[
-            (edges["Source_cluster"].astype(str) == str(clicked_node))
-            | (edges["Target_cluster"].astype(str) == str(clicked_node))
-        ]
-        connected |= set(mask["Source_cluster"].astype(str))
-        connected |= set(mask["Target_cluster"].astype(str))
-    return connected
+
+    def nav(node, connected=None):
+        if connected is None:
+            connected = {}
+        connected[node] = list(e[e.Source_cluster==node]['Target_cluster'].values)
+        cons = list(e[e.Source_cluster==node]['Target_cluster'].values)
+        for c in cons:
+            if c not in list(connected.keys()):
+                nav(c, connected)
+        #if len(cons)>0:
+            #for c in cons:
+             #   connected.extend(nav(c, connected))
+        #else:
+            #connected.append(node)
+
+        return connected
+            
+        
+    connected = nav(clicked_node)
+
+    #connected = list(set(connected))
+
+
+    st.session_state.masked_nodes = connected
+
+
 
 
 def render_graph() -> str | None:
@@ -321,21 +350,76 @@ def render_graph() -> str | None:
             f"<span style='color:white;'>**Legend:**</span> &nbsp;&nbsp;&nbsp; {legend}",
             unsafe_allow_html=True,
         )
+        neighbors =[]
+        #modify nodes list if clicked
+        if st.session_state.clicked_node_id:
+            #Track down the associated edges
+            df_edges = st.session_state.df_edges.copy()
+            e = df_edges.nlargest(int(len(df_edges) * .3), "count")
+            neighbors = list(e[e["Source_cluster"] == str(st.session_state.clicked_node_id)]['Target_cluster'].values)
+            
+        
+
+
+
         with st.container(border=True, height=760, horizontal_alignment="center"):
-            graph_config = copy(st.session_state.graph_config)
+            graph_config = st.session_state.graph_config
             graph_config.width = "100%"
             graph_config.height = "740px"
 
-            nodes = list(st.session_state.nodes)
-            edges = list(st.session_state.edges)
-            masked_nodes = st.session_state.get("masked_nodes", set())
-            if masked_nodes:
-                nodes = [node for node in nodes if str(node.id) not in masked_nodes]
-                edges = [
-                    edge
-                    for edge in edges
-                    if str(edge.source) not in masked_nodes and str(edge.target) not in masked_nodes
-                ]
+            nodes = list(copy.deepcopy(st.session_state.nodes))
+            edges = list(copy.deepcopy(st.session_state.edges))
+        
+
+            if len(st.session_state.masked_nodes) > 0:
+                masks = []
+                for v in list(st.session_state.masked_nodes.values()):
+                    masks.extend(v)
+                masks = list(set(masks))
+
+                for node in nodes:
+                    #print(f"{node.id} {node.color['background']}")
+                    if node.id in masks:
+                        #node.color['background'] = "#8c1108"
+                        node.color['border'] = "#01060c"
+                        node.color['background'] = "rgba(0, 0, 0, 0)" 
+                        node.opacity=1
+
+                    if node.id==st.session_state.clicked_node_id:
+                        #node.color['background'] = "#4a90d9"
+                        node.color['border'] = "#000509"
+                        node.color['background'] = "rgba(211, 211, 211, 1)" 
+                        node.opacity=1  
+                for edge in edges:
+                    opac = .5                    
+                    if edge.source in st.session_state.masked_nodes.keys():
+                        #print(vars(edge))
+                        if edge.to in st.session_state.masked_nodes[edge.source]:
+                             opac = .8              
+                    edge.color['opacity']=opac
+
+                    
+
+
+            elif len(neighbors)>0:
+                for node in nodes:
+                    #print(f"{node.id} {node.color['background']}")
+                    if node.id in neighbors:
+                        #node.color['background'] = "#8c1108"
+                        node.color['border'] = "#01060c"
+                        node.opacity=1
+                    if node.id==st.session_state.clicked_node_id:
+                        #node.color['background'] = "#4a90d9"
+                        node.color['border'] = "#000509"
+                        node.opacity=1  
+                for edge in edges:  
+                    if edge.source == st.session_state.clicked_node_id:                    
+                        edge.color['opacity']=.8                    
+           
+
+            
+        
+   
 
             return agraph(
                 nodes=nodes,
@@ -359,7 +443,8 @@ def render_authors() -> None:
             cols[i % 3].markdown(f'<span style="color:white">{name}</span>', unsafe_allow_html=True)
 
 
-def render_sidebar(clicked_node) -> None:
+def render_sidebar() -> None:
+    clicked_node = st.session_state.clicked_node_id
     with st.sidebar:
         with st.expander("Cluster info", expanded=True):
             if not clicked_node:
@@ -367,12 +452,19 @@ def render_sidebar(clicked_node) -> None:
                 return
 
             st.write(f"**Selected Node:** {clicked_node}")
-            mask_clicked = st.button("Mask selected + connected nodes", type="secondary")
-            if mask_clicked:
-                st.session_state.masked_nodes = _connected_node_mask(clicked_node)
 
-            if st.session_state.get("masked_nodes"):
-                st.caption("Connected nodes are hidden.")
+            if len(st.session_state.masked_nodes)>0:
+                unmask_clicked = st.button("Unmask")
+                if unmask_clicked:
+                    st.session_state.masked_nodes = {}
+                    st.rerun()
+            else:
+                mask_clicked = st.button("Mask")
+                if mask_clicked:
+                    _connected_node_mask(clicked_node)
+                    st.rerun()
+
+
 
             studies = st.session_state.studies
             selected_studies = studies.loc[
@@ -399,7 +491,7 @@ def render_sidebar(clicked_node) -> None:
 
 # ── Page body (only after a search has been run) ─────────────────────────────
 clicked = None
-if has_results:
+if has_results and not st.session_state.processing:
     studies = st.session_state.studies
     st.download_button(
         label="Download studies CSV",
@@ -409,8 +501,13 @@ if has_results:
     )
     cluster_timeline_slot = st.empty()
     clicked = render_graph()
+    if clicked:
+        if str(clicked) != st.session_state.clicked_node_id:
+            st.session_state.clicked_node_id = str(clicked)
+            st.rerun()
     with cluster_timeline_slot.container():
-        render_cluster_timelines(studies, st.session_state.df_edges, clicked)
+        render_cluster_timelines(studies, st.session_state.df_edges)
     render_landmark_timelines(studies)
     render_authors()
-render_sidebar(clicked)
+
+render_sidebar()

@@ -29,9 +29,9 @@ def plot_cluster_timeline(
     Returns a Figure, or None if there is nothing to draw.
     """
     bin_colors = {
-        "clinical": "#177a5e",
-        "human": "#1d6fa4",
-        "animal": "#7a4fb5",
+        "clinical": "rgba(23, 122, 94, 0.5)",
+        "human": "rgba(29, 111, 184, 0.5)",
+        "animal": "rgba(122, 79, 181, 0.5)",
     }
     default_color = "#64748b"
 
@@ -59,13 +59,13 @@ def plot_cluster_timeline(
     cluster_y = point_clusters.set_index("Cluster")["y"].to_dict()
 
     
-    fig = go.Figure()
+    fig = go.FigureWidget()
 
    # Citation edges between study clusters, anchored at their median dates.
     anchors = df.groupby("Cluster")["t"].median()
 
     e = df_edges.nlargest(int(len(df_edges) * .3), "count")
-
+    neighbors = []
     for edge_index, r in e.iterrows():
         s, t = r["Source_cluster"], r["Target_cluster"]
         start_x, end_x = anchors[s], anchors[t]
@@ -86,13 +86,19 @@ def plot_cluster_timeline(
             + 2 * (1 - curve_t) * curve_t * control_y
             + curve_t ** 2 * end_y
         )
+        e_opacity = 0.1
+        if selected_cluster is not None:
+            if s == selected_cluster:
+                e_opacity = 1
+                neighbors.append(t)
+            
         fig.add_trace(
             go.Scatter(
                 x=curve_x,
                 y=curve_y,
                 mode="lines",
                 line={
-                    "color": "rgba(71, 85, 105, 0.45)",
+                    "color": f"rgba(71, 85, 105, {e_opacity})",
                     "width": 1 + 4 * r["count"] /  e["count"].max(),
                 },
                 hoverinfo="skip",
@@ -112,17 +118,27 @@ def plot_cluster_timeline(
                 hoverinfo="skip",
                 showlegend=False,
             )
-        )   
+        )  
+     
     for bin_name in ("clinical", "human", "animal"):
         points = point_clusters[point_clusters["Bin"] == bin_name]
         customdata = points[
             ["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]
         ].astype(object).to_numpy()
+        colors = []
+        for c in list(points['Cluster'].values):
+            add_c = bin_colors[bin_name]
+            if selected_cluster is not None:
+                if c == selected_cluster or c in neighbors:
+                    add_c = add_c[:-4] + "1)"
+            colors.append(add_c)
+
         for column in (0, 1):
             customdata[:, column] = [
                 textwrap.fill(str(label), width=30).replace("\n", "<br>")
                 for label in customdata[:, column]
             ]
+
         fig.add_trace(
                 go.Scatter(
                     x=points["t"],
@@ -131,7 +147,7 @@ def plot_cluster_timeline(
                     name=bin_name.capitalize(),
                     marker={
                         "size": 12 + 22 * (points["n"] / point_clusters["n"].max()) ** 0.9,
-                        "color": bin_colors.get(bin_name, default_color),
+                        "color": colors,
                         "line": {"color": "white", "width": 1},
                         "opacity": 0.85,
                     },
@@ -149,25 +165,9 @@ def plot_cluster_timeline(
                         "Median publication year: %{x:.0f}<extra></extra>"
                     ),
                 )
-            )   
+            ) 
 
-    if selected_cluster is not None:
-        selected_points = point_clusters[point_clusters["Cluster"] == str(selected_cluster)]
-        fig.add_trace(
-            go.Scatter(
-                x=selected_points["t"],
-                y=selected_points["y"],
-                mode="markers",
-                marker={
-                    "symbol": "circle-open",
-                    "size": 42,
-                    "color": "#facc15",
-                    "line": {"color": "#facc15", "width": 3},
-                },
-                hoverinfo="skip",
-                showlegend=False,
-            )
-        ) 
+
 
  
     y_min = int(np.floor(point_clusters["t"].min()))
