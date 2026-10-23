@@ -50,7 +50,10 @@ st.markdown(
 [data-testid="stExpander"] summary:hover svg { color: #ffffff !important; }
 
 .stMarkdown ul li, .stMarkdown ul li::marker { color: white !important; }
-button:hover, button:hover * { color: #ffffff !important; }
+button, button * { color: #000000 !important; }
+button:hover, button:hover *,
+button:focus-visible, button:focus-visible *,
+button:active, button:active * { color: #ffffff !important; }
 .st-key-cluster_timeline_years [data-testid="stSlider"] * { color: #ffffff !important; }
 .st-key-cluster_timeline_years [data-testid="stSlider"] [role="slider"] {
     background-color: #ffffff !important;
@@ -294,7 +297,8 @@ def render_cluster_timelines(studies, df_edges) -> None:
             plot_cluster_timeline(
                 rng_studies,
                 rng_edges,
-                selected_cluster=clicked_node
+                selected_cluster=clicked_node,
+                masked_nodes=st.session_state.masked_nodes
             )
         )
 
@@ -373,9 +377,10 @@ def render_graph() -> str | None:
 
             if len(st.session_state.masked_nodes) > 0:
                 masks = []
-                for v in list(st.session_state.masked_nodes.values()):
+                masked_nodes = st.session_state.masked_nodes
+                for v in list(masked_nodes.values()):
                     masks.extend(v)
-                masks = list(set(masks))
+                masks = list(set(masks + list(masked_nodes.keys())))
 
                 for node in nodes:
                     #print(f"{node.id} {node.color['background']}")
@@ -504,6 +509,7 @@ if has_results and not st.session_state.processing:
     if clicked:
         if str(clicked) != st.session_state.clicked_node_id:
             st.session_state.clicked_node_id = str(clicked)
+            st.session_state.masked_nodes = {}
             st.rerun()
     with cluster_timeline_slot.container():
         render_cluster_timelines(studies, st.session_state.df_edges)

@@ -24,6 +24,7 @@ def plot_cluster_timeline(
     df_studies: pd.DataFrame,
     df_edges: pd.DataFrame,
     selected_cluster: str | None = None,
+    masked_nodes: dict = {}
 ):
     """Plot one lane per breakthrough cluster and points for study clusters.
     Returns a Figure, or None if there is nothing to draw.
@@ -87,10 +88,17 @@ def plot_cluster_timeline(
             + curve_t ** 2 * end_y
         )
         e_opacity = 0.1
-        if selected_cluster is not None:
+        if len(masked_nodes)>0:
+            if s in masked_nodes.keys():
+                if t in masked_nodes[s]:
+                    e_opacity = 1
+            
+
+        elif selected_cluster is not None:
             if s == selected_cluster:
                 e_opacity = 1
                 neighbors.append(t)
+
             
         fig.add_trace(
             go.Scatter(
@@ -126,12 +134,31 @@ def plot_cluster_timeline(
             ["Cluster", "BreakthruCluster", "Bin", "n", "first_year", "last_year"]
         ].astype(object).to_numpy()
         colors = []
+        line_colors= [] 
+        line_widths = []
+        masks = []
+        if len(masked_nodes)>0:
+            for v in list(masked_nodes.values()):
+                masks.extend(v)
+            masks = list(set(masks + list(masked_nodes.keys())))
         for c in list(points['Cluster'].values):
             add_c = bin_colors[bin_name]
-            if selected_cluster is not None:
+            add_line_color = "white"
+            add_line_width = 1
+            if len(masks)>0:
+                if c == selected_cluster:
+                    add_c =  "rgba(211, 211, 211, 1)" 
+                    add_line_color = "black"
+                elif c in masks:
+                    add_c = "rgba(0, 0, 0, 0)" 
+                    add_line_color = "black"
+
+            elif selected_cluster is not None:
                 if c == selected_cluster or c in neighbors:
                     add_c = add_c[:-4] + "1)"
             colors.append(add_c)
+            line_colors.append(add_line_color)
+            line_widths.append(add_line_width)
 
         for column in (0, 1):
             customdata[:, column] = [
@@ -148,7 +175,10 @@ def plot_cluster_timeline(
                     marker={
                         "size": 12 + 22 * (points["n"] / point_clusters["n"].max()) ** 0.9,
                         "color": colors,
-                        "line": {"color": "white", "width": 1},
+                        "line": dict(
+                            color = line_colors,
+                            width = line_widths
+                        ),
                         "opacity": 0.85,
                     },
                     customdata=customdata,
