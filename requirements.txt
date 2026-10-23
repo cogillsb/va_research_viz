@@ -10,3 +10,4 @@ streamlit-agraph
 wordcloud
 scikit-learn
 tqdm
+anywidget
