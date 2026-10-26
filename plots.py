@@ -60,14 +60,7 @@ def plot_cluster_timeline(
     cluster_y = point_clusters.set_index("Cluster")["y"].to_dict()
 
     point_clusters["plot_y"] = point_clusters["y"].astype(float)
-    for _, cluster_points in point_clusters.groupby("BreakthruCluster", sort=False):
-        if len(cluster_points) > 1:
-            ordered_indices = cluster_points.sort_values(
-                ["t", "Cluster", "Bin"], kind="stable"
-            ).index
-            point_clusters.loc[ordered_indices, "plot_y"] += np.linspace(
-                -0.5, 0.5, len(ordered_indices)
-            )
+
 
     
     fig = go.FigureWidget()
