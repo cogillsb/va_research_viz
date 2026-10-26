@@ -18,7 +18,7 @@ from graph_layout import BIN_STYLE, build_graph
 from network_build import build_network
 from plots import plot_cluster_timeline, plot_landmark_timeline
 
-DEBUG_DUMP_CSV = True  # write the dataframes returned by build_network to disk
+DEBUG_DUMP_CSV = False  # write the dataframes returned by build_network to disk
 DATA_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
