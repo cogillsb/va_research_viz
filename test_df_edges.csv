@@ -1,289 +1,244 @@
 Source_cluster,Target_cluster,count
-aging diet; glucagon like peptide; mice inbred; dipeptidyl peptidase (Cluster 71),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-aging diet; glucagon like peptide; mice inbred; dipeptidyl peptidase (Cluster 71),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-aging diet; glucagon like peptide; mice inbred; dipeptidyl peptidase (Cluster 71),energy metabolism; diet carbohydrate restricted; publishing periodicals topic; endoscopy gastrointestinal (Cluster 46),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; receptor agonists (Cluster 51),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),sodium glucose transporter; diabetes mellitus type; hypoglycemic agents; glucagon like (Cluster 43),1
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),5
-alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),sodium glucose transporter; renal insufficiency; glucagon like peptide; receptor agonists (Cluster 19),1
-anti inflammatory agents; disease models; agmatine peptides; releasing hormone (Cluster 65),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-anti inflammatory agents; disease models; agmatine peptides; releasing hormone (Cluster 65),glucagon like peptide; receptor agonists; fatty acid transport; women health (Cluster 17),5
-anti obesity agents; weight loss muscle; drinking diabetes mellitus; fatty liver (Cluster 40),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-anti obesity agents; weight loss muscle; drinking diabetes mellitus; fatty liver (Cluster 40),diabetes mellitus type; gastric bypass; liraglutide obesity morbid; feeding behavior (Cluster 4),1
-anti obesity agents; weight loss muscle; drinking diabetes mellitus; fatty liver (Cluster 40),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-anti obesity agents; weight loss muscle; drinking diabetes mellitus; fatty liver (Cluster 40),heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),1
-blood brain barrier; associated changes immune; microbiota nervous diseases; life suitable (Cluster 31),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),3
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),2
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),2
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; diabetic neuropathies (Cluster 1),1
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),2
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),dipeptidyl peptidase iv; glucagon like peptide; inhibitors duodenum enteroendocrine; inosine monophosphate (Cluster 74),2
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),1
-blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),3
-blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),2
-blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),1
-body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),3
-body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),1
-body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),glucagon like peptide; spinal cord injuries; receptor agonists; insulin glargine (Cluster 15),1
-body weight energy; vagus nerve stimulation; diet high fat; wistar obesity sex (Cluster 56),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),dipeptidyl peptidase iv; glucagon like peptide; inhibitors duodenum enteroendocrine; inosine monophosphate (Cluster 74),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),fatty liver disease; rats wistar receptors; diseases alcoholic; ethanol ghrelin (Cluster 54),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),1
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),2
-brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),outer membrane; neural pathways; spinal cord; intestinal mucosa (Cluster 60),1
-diabetes mellitus type; gastric bypass; liraglutide obesity morbid; feeding behavior (Cluster 4),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-diabetes mellitus type; gastric bypass; liraglutide obesity morbid; feeding behavior (Cluster 4),glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),2
-diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),1
-diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),sodium glucose transporter; glucagon like peptide; receptor agonists; mellitus type (Cluster 34),1
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),blood brain barrier; associated changes immune; microbiota nervous diseases; life suitable (Cluster 31),2
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),8
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),4
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),2
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; receptor agonists (Cluster 51),1
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),9
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 20),2
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),11
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),6
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),heart failure; primary prevention; flavins luciferases; hypoglycemic agents (Cluster 42),2
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),peptide receptor agonists; services glucagon like; diet reducing; diabetes mellitus (Cluster 52),1
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),10
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),sodium glucose transporter; glucagon like peptide; receptor agonists; mellitus type (Cluster 34),9
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),4
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),sodium glucose transporter; renal insufficiency; glucagon like peptide; receptor agonists (Cluster 19),2
-diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),1
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),1
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),2
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),glucagon like peptide; sedentary behavior; receptor kidney failure; resistance training (Cluster 26),1
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),1
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),sodium glucose transporter; glucagon like peptide; receptor agonists; mellitus type (Cluster 34),1
-diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),2
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),sodium glucose transporter; glucagon like peptide; receptor agonists; mellitus type (Cluster 34),1
-diabetes mellitus type; metabolic syndrome; natriuretic peptide brain; bone density (Cluster 8),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),1
-dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),1
-dipeptidyl peptidase iv; glucagon like peptide; inhibitors duodenum enteroendocrine; inosine monophosphate (Cluster 74),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),2
-dipeptidyl peptidase iv; glucagon like peptide; inhibitors duodenum enteroendocrine; inosine monophosphate (Cluster 74),glucagon like peptide; receptor agonists; fatty acid transport; women health (Cluster 17),1
-diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; diabetic neuropathies (Cluster 1),1
-diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),3
-diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),glucagon like peptide; spinal cord injuries; receptor agonists; insulin glargine (Cluster 15),1
-diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),1
-diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),2
-energy metabolism; diet carbohydrate restricted; publishing periodicals topic; endoscopy gastrointestinal (Cluster 46),alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),1
-energy metabolism; diet carbohydrate restricted; publishing periodicals topic; endoscopy gastrointestinal (Cluster 46),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),1
-energy metabolism; diet carbohydrate restricted; publishing periodicals topic; endoscopy gastrointestinal (Cluster 46),glucagon like peptide; weight loss; bariatric surgery; mice knockout (Cluster 55),2
-energy metabolism; diet carbohydrate restricted; publishing periodicals topic; endoscopy gastrointestinal (Cluster 46),insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),1
-fatty acids omega; insulin resistance; prostatic neoplasms fish; watchful waiting (Cluster 75),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-fatty acids omega; insulin resistance; prostatic neoplasms fish; watchful waiting (Cluster 75),heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),1
-fatty acids omega; insulin resistance; prostatic neoplasms fish; watchful waiting (Cluster 75),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),1
-fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),1
-fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),2
-fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),1
-fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),mesenchymal stem; islets langerhans; acupuncture points; healing genetic therapy (Cluster 68),1
-fatty liver disease; rats wistar receptors; diseases alcoholic; ethanol ghrelin (Cluster 54),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),2
-fatty liver disease; type non alcoholic; diabetes mellitus; suppressor proteins (Cluster 36),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-fatty liver disease; type non alcoholic; diabetes mellitus; suppressor proteins (Cluster 36),dipeptidyl peptidase iv; glucagon like peptide; inhibitors duodenum enteroendocrine; inosine monophosphate (Cluster 74),1
-fatty liver disease; type non alcoholic; diabetes mellitus; suppressor proteins (Cluster 36),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),2
-fatty liver metabolic; hispanic latino black; diseases non alcoholic; african american (Cluster 50),alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),1
-fatty liver metabolic; hispanic latino black; diseases non alcoholic; african american (Cluster 50),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),fatty liver disease; rats wistar receptors; diseases alcoholic; ethanol ghrelin (Cluster 54),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),2
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),glucagon like peptide; weight loss; bariatric surgery; mice knockout (Cluster 55),1
-fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),mesenchymal stem; islets langerhans; acupuncture points; healing genetic therapy (Cluster 68),1
-gastric acid; taste receptors; rats sprague dawley; gene expression (Cluster 58),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),1
-gastric acid; taste receptors; rats sprague dawley; gene expression (Cluster 58),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),1
-gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),1
-gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),1
-gastrointestinal microbiome; circadian rhythm; energy metabolism; gene expression (Cluster 39),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-gastrointestinal microbiome; circadian rhythm; energy metabolism; gene expression (Cluster 39),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),4
-gastrointestinal microbiome; circadian rhythm; energy metabolism; gene expression (Cluster 39),glucagon like peptide; weight loss; bariatric surgery; mice knockout (Cluster 55),1
-gastrointestinal microbiome; circadian rhythm; energy metabolism; gene expression (Cluster 39),outer membrane; neural pathways; spinal cord; intestinal mucosa (Cluster 60),1
-glucagon like peptide; analysis variance; male mice; antagonist exendin (Cluster 64),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-glucagon like peptide; analysis variance; male mice; antagonist exendin (Cluster 64),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),2
-glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; receptor agonists (Cluster 51),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),diabetes mellitus type; gastric bypass; liraglutide obesity morbid; feeding behavior (Cluster 4),3
-glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-glucagon like peptide; dipeptidyl peptidase; anti obesity; hypoglycemic agents (Cluster 5),glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),1
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),1
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),3
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),1
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),fatty liver disease; type non alcoholic; diabetes mellitus; suppressor proteins (Cluster 36),1
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),glucagon like peptide; receptor agonists; fatty acid transport; women health (Cluster 17),2
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),1
-glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),sleep apnea obstructive; wake disorders; liver diseases alcoholic; alcohol related (Cluster 23),1
-glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; receptor agonists (Cluster 51),1
-glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),1
-glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),1
-glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),sleep apnea obstructive; wake disorders; liver diseases alcoholic; alcohol related (Cluster 23),3
-glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),sodium glucose transporter; diabetes mellitus type; hypoglycemic agents; glucagon like (Cluster 43),2
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),diabetes mellitus type; gastric bypass; liraglutide obesity morbid; feeding behavior (Cluster 4),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),2
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),glucagon like peptide; receptor agonists; fatty acid transport; women health (Cluster 17),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),1
-glucagon like peptide; insulin secretion; disease models; appetite depressants (Cluster 62),sleep apnea obstructive; wake disorders; liver diseases alcoholic; alcohol related (Cluster 23),1
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),diabetes mellitus type; sodium glucose transporter; peptidase iv inhibitors; cardiovascular diseases (Cluster 24),1
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),2
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),2
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 20),1
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),1
-glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),2
-glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 20),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),1
-glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),glucagon like peptide; dipeptidyl peptidase; anti obesity; hypoglycemic agents (Cluster 5),1
-glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),1
-glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-glucagon like peptide; sedentary behavior; receptor kidney failure; resistance training (Cluster 26),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),1
-glucagon like peptide; weight loss; bariatric surgery; mice knockout (Cluster 55),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-glucagon like peptide; weight loss; bariatric surgery; mice knockout (Cluster 55),fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),1
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),body weight energy; vagus nerve stimulation; diet high fat; wistar obesity sex (Cluster 56),2
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),diabetes mellitus type; gastric bypass; liraglutide obesity morbid; feeding behavior (Cluster 4),2
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),2
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),glucagon like peptide; spinal cord injuries; receptor agonists; insulin glargine (Cluster 15),1
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),glucagon like peptide; weight loss; bariatric surgery; mice knockout (Cluster 55),1
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),1
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),1
-glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),mesenchymal stem; islets langerhans; acupuncture points; healing genetic therapy (Cluster 68),1
-heart failure; benzhydryl compounds glucosides; impact empagliflozin decongestion; empulse trial (Cluster 9),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),1
-heart failure; benzhydryl compounds glucosides; impact empagliflozin decongestion; empulse trial (Cluster 9),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),1
-heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),3
-heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),heart failure; benzhydryl compounds glucosides; impact empagliflozin decongestion; empulse trial (Cluster 9),1
-heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),medication adherence; glucagon like peptide; diabetes mellitus type; blood glucose (Cluster 6),1
-heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),outer membrane; neural pathways; spinal cord; intestinal mucosa (Cluster 60),1
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),1
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),2
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),2
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),2
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),1
-heart failure; glucose transporter inhibitors; ventricular function left; stroke volume (Cluster 11),sodium glucose transporter; renal insufficiency; glucagon like peptide; receptor agonists (Cluster 19),1
-heart failure; primary prevention; flavins luciferases; hypoglycemic agents (Cluster 42),glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),2
-heart failure; valsartan angiotensin neprilysin; stroke volume tetrazoles; receptor antagonists (Cluster 76),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-heart failure; valsartan angiotensin neprilysin; stroke volume tetrazoles; receptor antagonists (Cluster 76),glucagon like peptide; analysis variance; male mice; antagonist exendin (Cluster 64),1
-heart failure; valsartan angiotensin neprilysin; stroke volume tetrazoles; receptor antagonists (Cluster 76),type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),1
-heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),2
-heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),glucagon like peptide; receptor agonists; hypoglycemic agents; weight loss (Cluster 25),2
-heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),protein kinase; mitogen activated; matrix metalloproteinase; proteins signal (Cluster 18),1
-heart failure; weight loss; growth differentiation factor; body mass index (Cluster 3),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),3
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),1
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),2
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),fatty liver; heart failure; insulin resistance; coronary disease (Cluster 44),1
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),2
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),insulin secreting; cystic fibrosis glucagon; activated protein kinase; physiological phenomena (Cluster 22),1
-insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),sleep apnea obstructive; wake disorders; liver diseases alcoholic; alcohol related (Cluster 23),1
-insulin secreting; cystic fibrosis glucagon; activated protein kinase; physiological phenomena (Cluster 22),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),blood glucose; insulin secreting; diabetes mellitus type; signal transduction (Cluster 38),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),fatty liver disease; glucagon like peptide; non alcoholic; progesterone receptors (Cluster 21),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),glucagon like peptide; receptor agonists; fatty acid transport; women health (Cluster 17),1
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),insulin secreting; cystic fibrosis glucagon; activated protein kinase; physiological phenomena (Cluster 22),2
-insulin secretion; blood brain barrier; homeodomain proteins; phosphohydrolases glucose (Cluster 59),protein kinase; mitogen activated; matrix metalloproteinase; proteins signal (Cluster 18),1
-mesenchymal stem; islets langerhans; acupuncture points; healing genetic therapy (Cluster 68),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-non alcoholic fatty; fatty liver disease; amino acid; mice inbred (Cluster 61),body mass index; insulin secreting; models biological; resonance imaging (Cluster 45),1
-non alcoholic fatty; fatty liver disease; amino acid; mice inbred (Cluster 61),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),1
-non alcoholic fatty; fatty liver disease; amino acid; mice inbred (Cluster 61),energy metabolism; diet carbohydrate restricted; publishing periodicals topic; endoscopy gastrointestinal (Cluster 46),1
-non alcoholic fatty; fatty liver disease; amino acid; mice inbred (Cluster 61),glucagon like peptide; weight loss; gastric bypass; bariatric surgery (Cluster 41),1
-non alcoholic fatty; fatty liver disease; amino acid; mice inbred (Cluster 61),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),4
-outer membrane; neural pathways; spinal cord; intestinal mucosa (Cluster 60),brain gastrointestinal microbiome; insulin resistance; brain gut axis; abdominal fat (Cluster 16),2
-outer membrane; neural pathways; spinal cord; intestinal mucosa (Cluster 60),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),1
-peptide receptor agonists; services glucagon like; diet reducing; diabetes mellitus (Cluster 52),glucagon like peptide; dipeptidyl peptidase; anti obesity; hypoglycemic agents (Cluster 5),1
-peptide receptor agonists; services glucagon like; diet reducing; diabetes mellitus (Cluster 52),glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),1
-protein folding proteolysis; endoplasmic reticulum; relapsing remitting; multiple sclerosis (Cluster 47),alternative splicing genetic; blood brain barrier; genetic variation; adenylate cyclase activating (Cluster 73),1
-protein folding proteolysis; endoplasmic reticulum; relapsing remitting; multiple sclerosis (Cluster 47),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),1
-protein folding proteolysis; endoplasmic reticulum; relapsing remitting; multiple sclerosis (Cluster 47),mesenchymal stem; islets langerhans; acupuncture points; healing genetic therapy (Cluster 68),1
-protein folding proteolysis; endoplasmic reticulum; relapsing remitting; multiple sclerosis (Cluster 47),outer membrane; neural pathways; spinal cord; intestinal mucosa (Cluster 60),1
-protein kinase; mitogen activated; matrix metalloproteinase; proteins signal (Cluster 18),aging diet; glucagon like peptide; mice inbred; dipeptidyl peptidase (Cluster 71),1
-protein kinase; mitogen activated; matrix metalloproteinase; proteins signal (Cluster 18),anti inflammatory agents; disease models; agmatine peptides; releasing hormone (Cluster 65),1
-protein kinase; mitogen activated; matrix metalloproteinase; proteins signal (Cluster 18),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),2
-protein kinase; mitogen activated; matrix metalloproteinase; proteins signal (Cluster 18),insulin resistance; signal transduction; fatty acids; encephalitis garlic (Cluster 63),1
-proton pump inhibitors; protein structure quaternary; exchanging atpase; gastric acid (Cluster 72),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),4
-renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),1
-renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),glucagon like peptide; heart failure; weight loss; stroke volume (Cluster 2),1
-renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),glucagon like peptide; spinal cord injuries; receptor agonists; insulin glargine (Cluster 15),1
-renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),1
-sleep apnea obstructive; wake disorders; liver diseases alcoholic; alcohol related (Cluster 23),fatty liver disease; rats wistar receptors; diseases alcoholic; ethanol ghrelin (Cluster 54),2
-sleep apnea obstructive; wake disorders; liver diseases alcoholic; alcohol related (Cluster 23),glucagon like peptide; disease models; signal transduction; appetite body (Cluster 66),1
-sodium glucose transporter; diabetes mellitus type; hypoglycemic agents; glucagon like (Cluster 43),gastric inhibitory polypeptide; glucagon like; blood glucose; knockout homeostasis (Cluster 69),1
-sodium glucose transporter; glucagon like peptide; receptor agonists; mellitus type (Cluster 34),glucagon like peptide; spinal cord injuries; receptor agonists; insulin glargine (Cluster 15),1
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),1
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),1
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),4
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),1
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),1
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),obesity bariatric surgery; gastric acid; proton pump inhibitors; neurosecretory systems (Cluster 49),1
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),2
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),sodium glucose transporter; diabetes mellitus type; hypoglycemic agents; glucagon like (Cluster 43),4
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),18
-sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),sodium glucose transporter; renal insufficiency; glucagon like peptide; receptor agonists (Cluster 19),2
-sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),4
-sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; glycated hemoglobin (Cluster 13),1
-sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
-sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),4
-sodium glucose transporter; renal insufficiency; glucagon like peptide; receptor agonists (Cluster 19),sodium glucose transporter; kidney tubules proximal; mice knockout; gene expression (Cluster 67),1
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),dipeptidyl peptidase iv; diabetes mellitus type; hypoglycemic agents; sodium glucose (Cluster 37),2
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),dipeptidyl peptidase iv; glucagon like peptide; diabetes mellitus type; receptor agonists (Cluster 48),3
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),diseases metabolic syndrome; fatty liver disease; cardiovascular diseases; non alcoholic (Cluster 30),1
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 32),4
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),glucagon like peptide; receptor agonists; sodium glucose transporter; diabetes mellitus (Cluster 29),2
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),heart failure; clinical trials; diabetes mellitus type; cardiovascular diseases (Cluster 28),6
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),heart failure; primary prevention; flavins luciferases; hypoglycemic agents (Cluster 42),3
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),renal insufficiency chronic; sodium glucose transporter; diabetic nephropathies; diabetes mellitus (Cluster 33),2
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),sodium glucose transporter; glucagon like peptide; receptor agonists; mellitus type (Cluster 34),1
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),sodium glucose transporter; renal insufficiency chronic; diabetes mellitus type; kidney tubules (Cluster 27),4
-stroke volume; pressure cause death; heart failure; blind method (Cluster 14),sodium glucose transporter; renal insufficiency; glucagon like peptide; receptor agonists (Cluster 19),2
-type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),blood glucose; sulfonylurea compounds; hypoglycemic agents; diabetes mellitus (Cluster 10),1
-type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),diabetes mellitus type; glucagon like peptide; sodium glucose transporter; insulin secretion (Cluster 57),1
-type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 12),1
-type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; diabetic neuropathies (Cluster 1),1
-type heart failure; diabetes mellitus type; glucagon like peptide; sodium glucose (Cluster 35),glucagon like peptide; mice inbred; disease models; insulin secretion (Cluster 53),1
+anti obesity agents; gastric bypass; bariatric surgery; gastrointestinal microbiome (Cluster 27),diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),2
+anti obesity agents; gastric bypass; bariatric surgery; gastrointestinal microbiome (Cluster 27),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+anti obesity agents; gastric bypass; bariatric surgery; gastrointestinal microbiome (Cluster 27),heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),insulin secreting; cystic fibrosis; pluripotent stem; growth hormone releasing (Cluster 13),1
+appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),1
+blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),1
+blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),diabetes mellitus type; brain gut axis; hypoglycemic agents; gastrointestinal microbiome (Cluster 36),2
+blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),1
+blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),2
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),1
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),1
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),1
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),1
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),glucagon like peptide; receptor agonists; hypoglycemic agents; spinal cord (Cluster 5),3
+clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),3
+clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),1
+clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),2
+delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),1
+delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),2
+delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),memory disorders; alzheimer disease; body weight; hypoglycemic agents (Cluster 39),2
+diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),1
+diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),1
+diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),1
+diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),glucose transporter inhibitors; diabetes mellitus type; dipeptidyl peptidase iv; insufficiency chronic (Cluster 33),1
+diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),1
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),1
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),1
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),1
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),4
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),1
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),2
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),4
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),glucagon like peptide; insulin secretion; weight loss; diabetes mellitus (Cluster 41),1
+diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),1
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),1
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),1
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),1
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),1
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),2
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),3
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),1
+diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),7
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),3
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),2
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),2
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),5
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),3
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),8
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),4
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),glucose transporter inhibitors; diabetes mellitus type; dipeptidyl peptidase iv; insufficiency chronic (Cluster 33),6
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),8
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),13
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),peptide receptor agonists; glucagon like peptide; diabetes mellitus type; hypoglycemic agents (Cluster 14),6
+diabetes mellitus type; hypoglycemic agents; renal insufficiency chronic; body composition (Cluster 7),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),7
+diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),1
+diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),1
+diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),1
+diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),1
+diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),diabetes mellitus type; brain gut axis; hypoglycemic agents; gastrointestinal microbiome (Cluster 36),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),2
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),glucose transporter inhibitors; diabetes mellitus type; dipeptidyl peptidase iv; insufficiency chronic (Cluster 33),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),2
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),1
+elderly resistance training; frail elderly; double blind method; kidney disease (Cluster 1),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),5
+encephalitis garlic nanoparticles; inflammatory agents antioxidants; anti inflammatory; amino acid (Cluster 48),diabetes mellitus type; brain gut axis; hypoglycemic agents; gastrointestinal microbiome (Cluster 36),5
+encephalitis garlic nanoparticles; inflammatory agents antioxidants; anti inflammatory; amino acid (Cluster 48),fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),1
+encephalitis garlic nanoparticles; inflammatory agents antioxidants; anti inflammatory; amino acid (Cluster 48),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),3
+encephalitis garlic nanoparticles; inflammatory agents antioxidants; anti inflammatory; amino acid (Cluster 48),insulin secreting; cystic fibrosis; pluripotent stem; growth hormone releasing (Cluster 13),2
+encephalitis garlic nanoparticles; inflammatory agents antioxidants; anti inflammatory; amino acid (Cluster 48),peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),1
+fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),1
+fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),4
+fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),1
+fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),3
+fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),4
+fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),2
+fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),1
+fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),glucagon like peptide; insulin secretion; weight loss; diabetes mellitus (Cluster 41),1
+fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),1
+gastric bypass; bariatric surgery; roux en; glucose tolerance (Cluster 26),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+gastric bypass; bariatric surgery; roux en; glucose tolerance (Cluster 26),glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),1
+gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),1
+gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),gastric bypass; bariatric surgery; roux en; glucose tolerance (Cluster 26),1
+gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),1
+gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),1
+gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),1
+glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),1
+glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),1
+glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),1
+glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),1
+glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),1
+glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),2
+glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),2
+glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),medication adherence; diabetes mellitus type; hypoglycemic agents; blood glucose (Cluster 4),1
+glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),1
+glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),1
+glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),1
+glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),1
+glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),1
+glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),2
+glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),1
+glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),1
+glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),1
+glucagon like peptide; insulin resistance; dipeptidyl peptidase; acids omega (Cluster 12),peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),1
+glucagon like peptide; insulin secretion; weight loss; diabetes mellitus (Cluster 41),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+glucagon like peptide; insulin secretion; weight loss; diabetes mellitus (Cluster 41),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),2
+glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),1
+glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),1
+glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),1
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),1
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),1
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),2
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),4
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),2
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),2
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),1
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),peptide receptor agonists; glucagon like peptide; diabetes mellitus type; hypoglycemic agents (Cluster 14),1
+glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),1
+glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),2
+glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),1
+glucagon like peptide; receptor agonists; hypoglycemic agents; spinal cord (Cluster 5),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),1
+glucagon like peptide; receptor agonists; hypoglycemic agents; spinal cord (Cluster 5),glucose transporter inhibitors; diabetes mellitus type; dipeptidyl peptidase iv; insufficiency chronic (Cluster 33),1
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),body composition; muscle skeletal; weight loss; absorptiometry photon (Cluster 29),1
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),1
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),5
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),2
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),2
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),2
+glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),1
+heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),3
+heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),2
+heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),1
+heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),1
+heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),5
+heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),2
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),1
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),1
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),2
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),1
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),7
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),1
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),glucose transporter inhibitors; diabetes mellitus type; dipeptidyl peptidase iv; insufficiency chronic (Cluster 33),3
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),15
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),3
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),peptide receptor agonists; glucagon like peptide; diabetes mellitus type; hypoglycemic agents (Cluster 14),3
+heart failure; stroke volume; glucose transporter inhibitors; diabetes mellitus (Cluster 11),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),5
+inhibitors angiotensin receptor; converting enzyme; cognitive dysfunction; antagonists dementia (Cluster 52),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),1
+insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),2
+insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),1
+insulin secreting; cystic fibrosis; pluripotent stem; growth hormone releasing (Cluster 13),diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),1
+insulin secreting; cystic fibrosis; pluripotent stem; growth hormone releasing (Cluster 13),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),1
+insulin secreting; cystic fibrosis; pluripotent stem; growth hormone releasing (Cluster 13),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),2
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),2
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),2
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),1
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),1
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),1
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),insulin secreting; cystic fibrosis; pluripotent stem; growth hormone releasing (Cluster 13),1
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),1
+insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),1
+like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),2
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),2
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),diabetes mellitus type; disease models; sodium glucose transporter; motor activity (Cluster 47),2
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),2
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),glucagon like peptide; diabetes mellitus type; hypoglycemic agents; carotid artery diseases (Cluster 9),1
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),1
+maternal nutritional physiological; diet western; tumor suppressor; neoplasm proteins (Cluster 24),proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),2
+memory disorders; alzheimer disease; body weight; hypoglycemic agents (Cluster 39),diabetes mellitus type; brain gut axis; hypoglycemic agents; gastrointestinal microbiome (Cluster 36),1
+memory disorders; alzheimer disease; body weight; hypoglycemic agents (Cluster 39),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),1
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),3
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),2
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),3
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),4
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),glucagon like peptide; insulin secretion; weight loss; diabetes mellitus (Cluster 41),1
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),2
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),1
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),memory disorders; alzheimer disease; body weight; hypoglycemic agents (Cluster 39),1
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),1
+peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),1
+peptide receptor agonists; glucagon like peptide; diabetes mellitus type; hypoglycemic agents (Cluster 14),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),1
+peptide receptor agonists; glucagon like peptide; diabetes mellitus type; hypoglycemic agents (Cluster 14),glucagon like peptide; signal transduction; insulin resistance; fatty acids (Cluster 43),1
+proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),diabetes mellitus type; blood glucose; hypoglycemic agents; glucagon like (Cluster 25),1
+proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),fibroblast growth factors; progesterone receptors steroid; central nervous; gene expression regulation (Cluster 15),1
+proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),4
+proton pump inhibitors; protein structure quaternary; aging diet; glucagon like (Cluster 50),peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),1
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),blood brain barrier; glucagon like peptide; adenylate cyclase activating; peptidase iv (Cluster 51),1
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),diabetes mellitus type; anti obesity agents; glucagon like peptide; differentiation factor (Cluster 3),1
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),diabetes mellitus type; hypoglycemic agents; sulfonylurea compounds; blood glucose (Cluster 2),2
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),1
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),gastric bypass; blood glucose; diabetes mellitus type; sulfonylurea compounds (Cluster 8),1
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),glucagon like peptide; high fat; body weight; diabetes mellitus (Cluster 45),1
+signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),5
+sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),glucagon like peptide; receptor agonists; graft rejection; hematopoietic stem (Cluster 40),2
+sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),insulin secretion; binding protein; gene expression; brain barrier (Cluster 44),1
+sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),10
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),glucagon like peptide; receptor agonists; diabetes mellitus type; sodium glucose (Cluster 19),3
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),glucagon like peptide; receptor agonists; hypoglycemic agents; diabetes mellitus (Cluster 16),1
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),insulin resistance; glucagon like peptide; receptor agonists; alcohol drinking (Cluster 32),1
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),7
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),peptide hormones; insulin resistance; gastrointestinal microbiome; gastric bypass (Cluster 35),1
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),peptide receptor agonists; glucagon like peptide; diabetes mellitus type; hypoglycemic agents (Cluster 14),1
+sodium glucose transporter; glucagon like peptide; kidney tubules proximal; diabetes mellitus (Cluster 42),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),22
+spinal cord injuries; diseases obesity abdominal; bile acids; therapy future treatments (Cluster 22),appetite body composition; vagus nerve stimulation; inflammation nanomedicine; agmatine peptides (Cluster 49),1
+spinal cord injuries; diseases obesity abdominal; bile acids; therapy future treatments (Cluster 22),fatty liver disease; non alcoholic; rats wistar; high fat (Cluster 46),1
+spinal cord injuries; diseases obesity abdominal; bile acids; therapy future treatments (Cluster 22),glucagon like peptide; receptor agonists; hypoglycemic agents; spinal cord (Cluster 5),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),clinical trials topic; metabolic syndrome renal; cardiovascular diseases; insufficiency chronic (Cluster 20),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),delivery health care; diabetic nephropathies; diabetes mellitus; hypoglycemic agents insulin (Cluster 30),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),fatty liver disease; non alcoholic; diabetes mellitus; like peptide (Cluster 18),2
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),glucagon like peptide; bariatric surgery; fatty acid transport; african american (Cluster 37),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),glucagon like peptide; receptor agonists; diabetes mellitus type; hypoglycemic agents (Cluster 31),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),like peptide receptor; sodium glucose transporter; diabetes mellitus type; hypoglycemic agents (Cluster 23),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),signal transduction; insulin resistance; diabetes mellitus; models biological (Cluster 38),1
+weight loss; body mass index; hypoglycemic agents; diabetes mellitus (Cluster 10),sodium glucose transporter; diabetes mellitus type; dipeptidyl peptidase; diabetic nephropathies (Cluster 21),1
+weight loss; metabolic syndrome; natriuretic peptide brain; diseases diabetes (Cluster 6),anti obesity agents; gastric bypass; bariatric surgery; gastrointestinal microbiome (Cluster 27),1
+weight loss; metabolic syndrome; natriuretic peptide brain; diseases diabetes (Cluster 6),glucagon like peptide; diabetes mellitus type; peptides hypoglycemic agents; drug overdose (Cluster 34),1
+weight loss; metabolic syndrome; natriuretic peptide brain; diseases diabetes (Cluster 6),glucagon like peptide; diabetes mellitus type; receptor agonists; hypoglycemic agents (Cluster 28),1
+weight loss; metabolic syndrome; natriuretic peptide brain; diseases diabetes (Cluster 6),heart failure; renal insufficiency chronic; diabetes mellitus type; sodium glucose (Cluster 17),1

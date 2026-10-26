@@ -116,7 +116,7 @@ def _cluster_studies(df_studies):
         vectors = vectorizer.fit_transform(study_texts.loc[labeled_indices])
         distinct_terms = study_texts.loc[labeled_indices].nunique()
         cluster_count = min(
-            max(1, int(math.sqrt(len(labeled_indices) / 2))),
+            max(1, int(math.sqrt(len(labeled_indices) / 4))),
             distinct_terms,
         )
         model = KMeans(

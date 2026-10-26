@@ -59,6 +59,16 @@ def plot_cluster_timeline(
     point_clusters["y"] = point_clusters["BreakthruCluster"].map(lane)
     cluster_y = point_clusters.set_index("Cluster")["y"].to_dict()
 
+    point_clusters["plot_y"] = point_clusters["y"].astype(float)
+    for _, cluster_points in point_clusters.groupby("BreakthruCluster", sort=False):
+        if len(cluster_points) > 1:
+            ordered_indices = cluster_points.sort_values(
+                ["t", "Cluster", "Bin"], kind="stable"
+            ).index
+            point_clusters.loc[ordered_indices, "plot_y"] += np.linspace(
+                -0.5, 0.5, len(ordered_indices)
+            )
+
     
     fig = go.FigureWidget()
 
@@ -169,7 +179,7 @@ def plot_cluster_timeline(
         fig.add_trace(
                 go.Scatter(
                     x=points["t"],
-                    y=points["y"],
+                    y=points["plot_y"],
                     mode="markers",
                     name=bin_name.capitalize(),
                     marker={
