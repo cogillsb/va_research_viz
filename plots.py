@@ -141,7 +141,7 @@ def plot_cluster_timeline(
             for v in list(masked_nodes.values()):
                 masks.extend(v)
             masks = list(set(masks + list(masked_nodes.keys())))
-        for c in list(points['Cluster'].values):
+        for c in list(points["Cluster"].values):
             add_c = bin_colors[bin_name]
             add_line_color = "white"
             add_line_width = 1

@@ -23,7 +23,7 @@ DATA_DIR = Path(__file__).resolve().parent
 
 st.set_page_config(
     page_title="VA Study Explorer",
-    page_icon="⬡",
+    page_icon="va.ico",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -51,12 +51,19 @@ st.markdown(
 
 .stMarkdown ul li, .stMarkdown ul li::marker { color: white !important; }
 button, button * { color: #000000 !important; }
+[data-testid="stSidebar"] button, [data-testid="stSidebar"] button * {
+    color: #000000 !important;
+}
 button:hover, button:hover *,
 button:focus-visible, button:focus-visible *,
 button:active, button:active * { color: #ffffff !important; }
 .st-key-cluster_timeline_years [data-testid="stSlider"] * { color: #ffffff !important; }
 .st-key-cluster_timeline_years [data-testid="stSlider"] [role="slider"] {
     background-color: #ffffff !important;
+}
+.st-key-graph_zoom_view [data-testid="stWidgetLabel"],
+.st-key-graph_zoom_view [data-testid="stWidgetLabel"] * {
+    color: #ffffff !important;
 }
 </style>
 """,
@@ -195,22 +202,19 @@ with st.form("search_form", border=False):  # form => pressing Enter also submit
     )
 
 
-if st.session_state.processing:  
+if st.session_state.processing:
+    search_status = st.empty()
+    search_steps = []
 
-    with st.status(
-        "Step 1 of 7: Searching PubMed for VA studies across three study types.",
-        expanded=True,
-    ) as search_status:
-        def update_search_status(message: str) -> None:
-            search_status.update(label=message)
+    def update_search_status(message: str) -> None:
+        search_steps.append(message)
+        search_status.markdown("\n\n".join(f"- {step}" for step in search_steps))
 
+    try:
         run_search(search_query.strip(), progress_callback=update_search_status)
-        search_status.update(
-            label="Search complete. The study network is ready.",
-            state="complete",
-            expanded=False,
-        ) 
-    st.session_state.processing = False  
+    finally:
+        search_status.empty()
+        st.session_state.processing = False
 
     st.rerun()
     
@@ -291,7 +295,7 @@ def render_cluster_timelines(studies, df_edges) -> None:
         #Reassign the clusters
         rng_studies['BreakthruCluster'] = assign_super_clusters(rng_studies, st.session_state['breakthrough_descriptions'])
 
-        rng_clusters = list(rng_studies.Cluster.unique())
+        rng_clusters = rng_studies["Cluster"].astype(str).unique().tolist()
         rng_edges = df_edges[(df_edges.Source_cluster.isin(rng_clusters))&(df_edges.Target_cluster.isin(rng_clusters))]
         show_figure(
             plot_cluster_timeline(
@@ -354,6 +358,12 @@ def render_graph() -> str | None:
             f"<span style='color:white;'>**Legend:**</span> &nbsp;&nbsp;&nbsp; {legend}",
             unsafe_allow_html=True,
         )
+        zoom_view = st.toggle(
+            "Enable graph zoom",
+            value=False,
+            key="graph_zoom_view",
+            help="Allow scrolling and double-clicking to zoom the graph.",
+        )
         neighbors =[]
         #modify nodes list if clicked
         if st.session_state.clicked_node_id:
@@ -368,8 +378,10 @@ def render_graph() -> str | None:
 
         with st.container(border=True, height=760, horizontal_alignment="center"):
             graph_config = st.session_state.graph_config
+            graph_config = copy.deepcopy(graph_config)
             graph_config.width = "100%"
             graph_config.height = "740px"
+            graph_config.interaction["zoomView"] = zoom_view
 
             nodes = list(copy.deepcopy(st.session_state.nodes))
             edges = list(copy.deepcopy(st.session_state.edges))

@@ -1,6 +1,7 @@
 """Node/edge construction for the tripartite cluster graph (streamlit-agraph)."""
 from __future__ import annotations
 
+import re
 import textwrap
 
 import pandas as pd
@@ -26,7 +27,9 @@ def _node_size(row: pd.Series) -> float:
 def _node(row, bin_name: str, x: float, y: float) -> Node:
     style = BIN_STYLE[bin_name]
     size = _node_size(row)
-    label = str(row["Cluster"])
+    cluster_id = str(row["Cluster"])
+    cluster_id_match = re.search(r"\(Cluster\s+(\d+)\)\s*$", cluster_id)
+    label = cluster_id_match.group(1) if cluster_id_match else cluster_id
     font = {"size": FONT_SIZE}
     if bin_name == "human":
         label = textwrap.fill(label, width=10, break_long_words=False, break_on_hyphens=False)

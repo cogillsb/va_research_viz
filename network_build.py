@@ -1,17 +1,34 @@
-import requests
+
 import pandas as pd
 import re
-import streamlit as st
+import os
 from Bio import Entrez
-from pathlib import Path
 from itertools import batched
-from collections import Counter
-from tqdm import tqdm
+from pathlib import Path
+from dotenv import load_dotenv
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 import math
 from elicit_interface import elicit_search
+
+
+def _study_texts(df_studies):
+    """Combine the article fields used for TF-IDF matching and clustering."""
+    text_fields = (
+        "MeSH Terms",
+        "Major MeSH Terms",
+        "Title",
+    )
+    return pd.concat(
+        [
+            df_studies.get(field, pd.Series("", index=df_studies.index))
+            .fillna("")
+            .astype(str)
+            for field in text_fields
+        ],
+        axis=1,
+    ).agg(" ".join, axis=1)
 
 
 def elicit_prompt(term):
@@ -30,17 +47,8 @@ def elicit_prompt(term):
 
 
 
-def _study_text(df_studies):
-
-    return (
-        df_studies["Title"].fillna("").astype(str)
-        + " "
-        + df_studies["Abstract"].fillna("").astype(str)
-    )
-
-
 def assign_super_clusters(df_studies, descriptions):
-    """Assign each generated cluster to the closest Elicit description."""
+    """Assign each article to the closest Elicit description using article text."""
     descriptions = [
         description.strip()
         for description in descriptions
@@ -49,12 +57,8 @@ def assign_super_clusters(df_studies, descriptions):
     if not descriptions:
         raise ValueError("Elicit returned no super-cluster descriptions")
 
-    study_text = _study_text(df_studies)
-    cluster_text = study_text.groupby(df_studies["Cluster"], sort=False).agg(
-        " ".join
-    )
     categories = []
-    for index, description in enumerate(descriptions, start=1):
+    for description in descriptions:
         base_label = description
         label = base_label
         suffix = 2
@@ -63,14 +67,143 @@ def assign_super_clusters(df_studies, descriptions):
             suffix += 1
         categories.append(label)
 
-    corpus = list(cluster_text) + descriptions
-    vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 2))
+    study_texts = _study_texts(df_studies)
+    has_study_texts = study_texts.str.strip().ne("")
+    assignments = pd.Series("", index=df_studies.index, dtype="object")
+    if not has_study_texts.any():
+        return assignments
+
+    corpus = study_texts[has_study_texts].tolist() + descriptions
+    vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 3))
     vectors = vectorizer.fit_transform(corpus)
-    cluster_vectors = vectors[:len(cluster_text)]
-    category_vectors = vectors[len(cluster_text):]
-    closest_categories = cosine_similarity(cluster_vectors, category_vectors).argmax(axis=1)
-    cluster_to_super_cluster = dict(zip(cluster_text.index, [categories[i] for i in closest_categories]))
-    return df_studies["Cluster"].map(cluster_to_super_cluster)
+    article_vectors = vectors[:has_study_texts.sum()]
+    category_vectors = vectors[has_study_texts.sum():]
+    closest_categories = cosine_similarity(
+        article_vectors, category_vectors
+    ).argmax(axis=1)
+    assignments.loc[has_study_texts] = [
+        categories[i] for i in closest_categories
+    ]
+    return assignments
+
+
+def _cluster_studies(df_studies):
+    """Cluster article text within each bin and breakthrough group."""
+    df_studies = df_studies.copy()
+    cluster_labels = pd.Series(index=df_studies.index, dtype="object")
+    next_cluster_id = 1
+    junk_words = {
+        "cells", "cell", "patient", "patients", "participant", "participants",
+        "years", "placebo", "group", "chief", "outcomes", "human", "humans",
+        "animals", "animal", "sup sup", "periodicals topic", "disease models"
+    }
+
+    for _, group in df_studies.groupby(
+        ["Bin", "BreakthruCluster"], sort=False, dropna=False
+    ):
+        study_texts = _study_texts(group)
+        has_study_texts = study_texts.str.strip().ne("")
+        labeled_indices = group.index[has_study_texts]
+
+        if not has_study_texts.any():
+            cluster_labels.loc[group.index] = (
+                f"No MeSH terms (Cluster {next_cluster_id})"
+            )
+            next_cluster_id += 1
+            continue
+
+        vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 3))
+        vectors = vectorizer.fit_transform(study_texts.loc[labeled_indices])
+        distinct_terms = study_texts.loc[labeled_indices].nunique()
+        cluster_count = min(
+            max(1, int(math.sqrt(len(labeled_indices) / 2))),
+            distinct_terms,
+        )
+        model = KMeans(
+            n_clusters=cluster_count,
+            init="k-means++",
+            max_iter=200,
+            n_init=10,
+            random_state=42,
+        )
+        model.fit(vectors)
+
+        terms = vectorizer.get_feature_names_out()
+        major_mesh_terms = group.get(
+            "Major MeSH Terms", pd.Series("", index=group.index)
+        ).fillna("").astype(str)
+        analyze = vectorizer.build_analyzer()
+        labels_by_cluster = {}
+        for cluster_number, center in enumerate(model.cluster_centers_):
+            cluster_id = next_cluster_id
+            next_cluster_id += 1
+            cluster_indices = labeled_indices[model.labels_ == cluster_number]
+            major_features = {
+                feature
+                for major_term in major_mesh_terms.loc[cluster_indices]
+                for feature in analyze(major_term)
+            }
+            ranked_terms = [
+                terms[index]
+                for index in center.argsort()[::-1]
+                if len(terms[index].split()) == len(set(terms[index].split()))
+                and not any(
+                    token in junk_words or token.isdigit()
+                    for token in terms[index].split()
+                )
+                and len(terms[index].split()) >= 2
+                and not re.search(r"\d", terms[index])
+            ]
+            ranked_terms.sort(key=lambda term: term not in major_features)
+
+            label_terms = []
+            for term in ranked_terms:
+                term_tokens = set(term.split())
+                redundant = False
+                replaced = False
+                for selected_index, selected_term in enumerate(label_terms):
+                    selected_term_tokens = set(selected_term.split())
+                    if term_tokens.issubset(selected_term_tokens):
+                        redundant = True
+                        break
+                    if selected_term_tokens.issubset(term_tokens):
+                        if (
+                            selected_term in major_features
+                            and term not in major_features
+                        ):
+                            redundant = True
+                            break
+                        label_terms[selected_index] = term
+                        replaced = True
+                        break
+                    if term_tokens & selected_term_tokens:
+                        redundant = True
+                        break
+                if redundant:
+                    continue
+                if not replaced:
+                    label_terms.append(term)
+                if len(label_terms) == 4:
+                    break
+            labels_by_cluster[cluster_number] = (
+                f"{'; '.join(label_terms) or 'No MeSH terms'} "
+                f"(Cluster {cluster_id})"
+            )
+
+        cluster_labels.loc[labeled_indices] = [
+            labels_by_cluster[cluster_number]
+            for cluster_number in model.labels_
+        ]
+        missing_indices = group.index[~has_study_texts]
+        if len(missing_indices):
+            cluster_labels.loc[missing_indices] = (
+                f"No MeSH terms (Cluster {next_cluster_id})"
+            )
+            next_cluster_id += 1
+
+    df_studies["Cluster"] = cluster_labels
+    return df_studies
+
 
 def fetch_pmids_on_search_term(quer_comps):
     # Format query"        
@@ -79,7 +212,6 @@ def fetch_pmids_on_search_term(quer_comps):
     handle = Entrez.esearch(db="pubmed", term=query, retmax=50000)
     record = Entrez.read(handle)
     handle.close()
-    
     # Retrieved PubMed IDs (PMIDs)
     return record["IdList"]
 
@@ -136,6 +268,8 @@ def build_layer(pmids, lyr_bin, lyr_organism, degree):
     sources = []
     targets = []
     tbl_titles = []
+    mesh_terms = []
+    major_mesh_terms = []
     dates = []
     years = []
     abstracts = []
@@ -159,6 +293,16 @@ def build_layer(pmids, lyr_bin, lyr_organism, degree):
 
         #Add it to our table
         tbl_titles.append(article ['MedlineCitation']['Article']['ArticleTitle']) 
+        mesh_headings = article["MedlineCitation"].get("MeshHeadingList", [])
+        article_major_mesh_terms = [
+            str(mesh["DescriptorName"])
+            for mesh in mesh_headings
+            if mesh["DescriptorName"].attributes.get("MajorTopicYN") == "Y"
+        ]
+        major_mesh_terms.append(", ".join(article_major_mesh_terms))
+        mesh_terms.append(
+            ", ".join(str(mesh["DescriptorName"]) for mesh in mesh_headings)
+        )
 
         if 'Abstract' in article['MedlineCitation']['Article'].keys():
             abstract_texts = (article['MedlineCitation']['Article']['Abstract']['AbstractText'])
@@ -176,6 +320,8 @@ def build_layer(pmids, lyr_bin, lyr_organism, degree):
 
     df_lyr_studies = pd.DataFrame({'ID': ids,
                                    'Title':tbl_titles,
+                                   'MeSH Terms': mesh_terms,
+                                   'Major MeSH Terms': major_mesh_terms,
                                    'Abstract': abstracts,
                                    'Date':dates,
                                    'Years': years,
@@ -207,7 +353,6 @@ def filter_pmids(ids, query_filters):
         handle = Entrez.esearch(db="pubmed", term=query, retmax=10000)
         record = Entrez.read(handle)
         handle.close()
-        
         # Retrieved PubMed IDs (PMIDs)
         filtered_ids.extend(record["IdList"])
         
@@ -222,8 +367,9 @@ def build_network(term, progress_callback=None):
             progress_callback(message)
 
     # Required by NCBI Entrez API
-    Entrez.email = "steven.cogill@va.gov"
-
+    Entrez.email = "cogillsb@kesho-ai.com"
+    load_dotenv(Path(__file__).with_name(".env"))
+    Entrez.api_key = os.getenv("NCBI_API_KEY")
 
 
     #Query filters for binning
@@ -284,7 +430,7 @@ def build_network(term, progress_callback=None):
 
 
 
-    update_progress("Step 4 of 7: Combining study records and clustering titles with abstracts.")
+    update_progress("Step 4 of 7: Combining studies and generating breakthrough descriptions.")
     df_studies = pd.concat([df_clinical_studies, df_human_studies, df_animal_studies,
                         df_clinical_sec_studies, df_human_sec_studies, df_animal_sec_studies])
 
@@ -296,61 +442,15 @@ def build_network(term, progress_callback=None):
 
     authors = list(set(clinical_authors + human_authors + animal_authors + clinical_sec_authors + human_sec_authors + animal_sec_authors))
 
-    #Cluster
-    cluster_labels = []
-    base_ids = []
-    used_labels = set()
-    for b in df_studies.Bin.unique():    
-        studs = df_studies[df_studies.Bin==b]
-        
-        clusters = int(math.sqrt((len(studs)/2)))
-    
-        vectorizer = TfidfVectorizer(stop_words='english')
-        X = vectorizer.fit_transform(_study_text(studs).values)
-        #Fit a model
-        model = KMeans(n_clusters=clusters, init='k-means++', max_iter=200, n_init=10, random_state=42)
-        model.fit(X)
-        labels = []
-
-        order_centroids = model.cluster_centers_.argsort()[:, ::-1]
-        terms = vectorizer.get_feature_names_out()
-        label_by_cluster = {}
-        for cluster_number in range(clusters):
-            top_terms = [terms[ind] for ind in order_centroids[cluster_number,]]
-            junk_words = ['cells', 'cell', 'patient', 'patients', 'participant', 'participants',
-                           'years', 'placebo', 'group', 'chief', 'outcomes', 'human', 'humans']
-            top_terms = [
-                x for x in top_terms
-                if x not in junk_words
-                and not re.search(r"\d", x)
-                and not x.isdigit()
-            ]
-
-            cluster_name = " ".join(top_terms[:4])
-            label_by_cluster[cluster_number] = cluster_name
-
-
-        for cluster_number in range(clusters):
-            base_label = label_by_cluster[cluster_number]
-            label = base_label
-            suffix = 2
-            while label in used_labels:
-                label = f"{base_label} ({suffix})"
-                suffix += 1
-            used_labels.add(label)
-            label_by_cluster[cluster_number] = label
-        labels = [label_by_cluster[cluster_number] for cluster_number in model.labels_]
-        
-        cluster_labels += labels
-        base_ids += list(studs.ID.values)
-
-    df_studies = pd.merge(df_studies, pd.DataFrame({'CID':base_ids, 'Cluster':cluster_labels}), left_on='ID', right_on='CID', how='left')
-    df_studies.drop(columns=['CID'], inplace=True)
-    update_progress("Step 5 of 7: Generating breakthrough descriptions with Elicit.")
     breakthrough_descriptions = elicit_search(term)
     df_studies['BreakthruCluster'] = assign_super_clusters(
         df_studies, breakthrough_descriptions
     )
+
+    update_progress(
+        "Step 5 of 7: Clustering studies by MeSH terms within breakthrough groups."
+    )
+    df_studies = _cluster_studies(df_studies)
 
     update_progress("Step 6 of 7: Linking clusters and calculating citation strength.")
     #Recalc edges
@@ -366,7 +466,9 @@ def build_network(term, progress_callback=None):
 
     pmid = list(df_studies.ID.values)
     
-    handle = Entrez.elink(dbfrom="pubmed", LinkName="pubmed_pubmed_citedin", id=pmid)
+    handle = Entrez.elink(
+        dbfrom="pubmed", LinkName="pubmed_pubmed_citedin", id=pmid
+    )
     record = Entrez.read(handle)
     handle.close()
     
