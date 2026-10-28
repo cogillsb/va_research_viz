@@ -408,12 +408,16 @@ def render_graph() -> str | None:
                         node.color['background'] = "rgba(211, 211, 211, 1)" 
                         node.opacity=1  
                 for edge in edges:
-                    opac = .5                    
+                                      
                     if edge.source in st.session_state.masked_nodes.keys():
-                        #print(vars(edge))
+                        print("here")
+                        print(edge.source)
                         if edge.to in st.session_state.masked_nodes[edge.source]:
-                             opac = .8              
-                    edge.color['opacity']=opac
+
+                             print(edge.source)
+                             #print(list(set(st.session_state.masked_nodes[edge.source])))
+                             edge.color['opacity']=.8         
+                    #edge.color['opacity']=opac
 
                     
 
